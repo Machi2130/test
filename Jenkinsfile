@@ -24,13 +24,13 @@ pipeline {
             steps {
                 script {
                     echo ">>> Stopping testapp service"
-                    sh '''
+                    sh """
                         sudo systemctl stop testapp || true
                         sleep 2
                         sudo pkill -9 -f testapp.Server.dll || true
                         sleep 2
-                        echo "✔ Service stopped"
-                    '''
+                        echo '✔ Service stopped'
+                    """
                 }
             }
         }
@@ -45,13 +45,13 @@ pipeline {
 
                     script {
                         echo ">>> Restoring .NET packages"
-                        sh 'dotnet restore testapp.sln'
+                        sh "dotnet restore testapp.sln"
 
                         echo ">>> Publishing .NET backend to TEMP folder"
-                        sh 'dotnet publish testapp.Server -c Release -o publish_temp -maxcpucount:1 /p:UseSharedCompilation=false'
+                        sh "dotnet publish testapp.Server -c Release -o publish_temp -maxcpucount:1 /p:UseSharedCompilation=false"
 
-                        echo ">>> Writing appsettings.Production.json"
-                        sh '''
+                        echo ">>> Writing Production config"
+                        sh """
                             cat > publish_temp/appsettings.Production.json <<EOF
 {
   "Logging": {
@@ -66,20 +66,21 @@ pipeline {
   }
 }
 EOF
-                        '''
+                        """
 
+                        echo ">>> Injecting DB credentials"
                         sh """
                             CONNECTION_STRING="Server=${DB_SERVER};Database=gusto;User Id=${DB_USER};Password=${DB_PASSWORD};TrustServerCertificate=True;Encrypt=True;"
                             sed -i "s|PLACEHOLDER_CONNECTION_STRING|${CONNECTION_STRING}|g" publish_temp/appsettings.Production.json
                         """
 
-                        echo ">>> Copying backend to /var/www/testapp/api"
-                        sh '''
+                        echo ">>> Deploying backend"
+                        sh """
                             sudo rm -rf /var/www/testapp/api/*
                             sudo cp -r publish_temp/* /var/www/testapp/api/
                             sudo chown -R www-data:www-data /var/www/testapp/api
-                            echo "✔ Backend deployed"
-                        '''
+                            echo '✔ Backend deployed'
+                        """
                     }
                 }
             }
@@ -90,24 +91,28 @@ EOF
                 dir('testapp.client') {
                     script {
                         echo ">>> Installing Angular dependencies"
-                        sh 'npm install'
+                        sh "npm install"
 
                         echo ">>> Building Angular"
-                        sh 'npm run build -- --configuration production'
+                        sh "npm run build -- --configuration production"
                     }
                 }
 
                 script {
-                    echo ">>> Deploying Angular UI"
-                    sh '''
+                    echo ">>> Deploying Angular build"
+                    sh """
                         sudo rm -rf /var/www/testapp/ui/*
-                        cp -r testapp.client/dist/testapp.client/browser/* /var/www/testapp/ui/ || \
-                        cp -r testapp.client/dist/testapp.client/* /var/www/testapp/ui/
+
+                        if [ -d testapp.client/dist/testapp.client/browser ]; then
+                            cp -r testapp.client/dist/testapp.client/browser/* /var/www/testapp/ui/
+                        else
+                            cp -r testapp.client/dist/testapp.client/* /var/www/testapp/ui/
+                        fi
 
                         sudo chown -R www-data:www-data /var/www/testapp/ui
                         sudo chmod -R 755 /var/www/testapp/ui
-                        echo "✔ UI deployed"
-                    '''
+                        echo '✔ UI deployed'
+                    """
                 }
             }
         }
@@ -120,18 +125,18 @@ EOF
                     string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD')
                 ]) {
                     script {
-                        echo ">>> Running EF Migrations"
-                        sh '''
+                        echo ">>> Running EF migrations"
+                        sh """
                             cd /var/www/testapp/api
 
-                            export ConnectionStrings__DefaultConnection="Server='${DB_SERVER}';Database=gusto;User Id='${DB_USER}';Password='${DB_PASSWORD}';TrustServerCertificate=True;Encrypt=True;"
+                            export ConnectionStrings__DefaultConnection="Server=${DB_SERVER};Database=gusto;User Id=${DB_USER};Password=${DB_PASSWORD};TrustServerCertificate=True;Encrypt=True;"
 
                             if [ -f testapp.Server.dll ]; then
-                                dotnet ef database update --no-build || echo "No migrations found"
+                                dotnet ef database update --no-build || echo 'No migrations found'
                             fi
 
-                            echo "✔ Migration step complete"
-                        '''
+                            echo '✔ Migration step complete'
+                        """
                     }
                 }
             }
@@ -141,11 +146,11 @@ EOF
             steps {
                 script {
                     echo ">>> Starting testapp service"
-                    sh '''
+                    sh """
                         sudo systemctl start testapp
                         sleep 5
-                        echo "✔ Service started"
-                    '''
+                        echo '✔ Service started'
+                    """
                 }
             }
         }
@@ -158,7 +163,7 @@ EOF
 
         failure {
             echo "❌ Deployment failed"
-            sh 'sudo systemctl start testapp || true'
+            sh "sudo systemctl start testapp || true"
         }
 
         always {
