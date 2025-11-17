@@ -44,9 +44,22 @@ pipeline {
                 script {
                     echo '>>> Deploying Angular build to web directory'
                     sh '''
+                        # Ensure target directory exists
+                        sudo mkdir -p /var/www/testapp/ui
+                        sudo chown -R jenkins:jenkins /var/www/testapp
+                        
+                        # Clean existing files
                         rm -rf /var/www/testapp/ui/*
-                        cp -r testapp.client/dist/testapp.client/browser/* /var/www/testapp/ui/ 2>/dev/null || \
-                        cp -r testapp.client/dist/testapp.client/* /var/www/testapp/ui/
+                        
+                        # Copy Angular build files
+                        if [ -d "testapp.client/dist/testapp.client/browser" ]; then
+                            cp -r testapp.client/dist/testapp.client/browser/* /var/www/testapp/ui/
+                        else
+                            cp -r testapp.client/dist/testapp.client/* /var/www/testapp/ui/
+                        fi
+                        
+                        # Set proper permissions
+                        sudo chmod -R 755 /var/www/testapp/ui
                     '''
                 }
             }
