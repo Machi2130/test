@@ -34,7 +34,7 @@ pipeline {
                         echo '>>> Configuring database connection'
                         sh """
                             # Build connection string
-                            CONNECTION_STRING="Server=${DB_SERVER};Database=testappDB;User Id=${DB_USER};Password=${DB_PASSWORD};TrustServerCertificate=True;Encrypt=True;"
+                            CONNECTION_STRING="Server=\${DB_SERVER};Database=gusto;User Id=\${DB_USER};Password=\${DB_PASSWORD};TrustServerCertificate=True;Encrypt=True;"
                             
                             # Update appsettings.json with connection string
                             cat > /var/www/testapp/api/appsettings.Production.json << 'EOF'
@@ -47,18 +47,17 @@ pipeline {
   },
   "AllowedHosts": "*",
   "ConnectionStrings": {
-    "DefaultConnection": "\${CONNECTION_STRING}"
+    "DefaultConnection": "PLACEHOLDER_CONNECTION_STRING"
   }
 }
 EOF
                             
                             # Replace placeholder with actual connection string
-                            sed -i "s|\\\${CONNECTION_STRING}|${CONNECTION_STRING}|g" /var/www/testapp/api/appsettings.Production.json
+                            sed -i "s|PLACEHOLDER_CONNECTION_STRING|\${CONNECTION_STRING}|g" /var/www/testapp/api/appsettings.Production.json
                             
-                            # Set proper ownership and permissions for www-data
+                            # Set proper ownership for www-data to run the service
                             sudo chown -R www-data:www-data /var/www/testapp/api
                             sudo chmod 640 /var/www/testapp/api/appsettings.Production.json
-                            sudo chmod 755 /var/www/testapp/api
                             
                             echo '✅ Database connection configured'
                         """
@@ -82,10 +81,6 @@ EOF
                 script {
                     echo '>>> Deploying Angular build to web directory'
                     sh '''
-                        # Ensure target directory exists
-                        sudo mkdir -p /var/www/testapp/ui
-                        sudo chown -R jenkins:jenkins /var/www/testapp
-                        
                         # Clean existing files
                         rm -rf /var/www/testapp/ui/*
                         
@@ -96,9 +91,9 @@ EOF
                             cp -r testapp.client/dist/testapp.client/* /var/www/testapp/ui/
                         fi
                         
-                        # Set proper permissions
-                        sudo chmod -R 755 /var/www/testapp/ui
+                        # Set proper permissions for www-data
                         sudo chown -R www-data:www-data /var/www/testapp/ui
+                        sudo chmod -R 755 /var/www/testapp/ui
                         
                         echo '✅ Angular deployment complete'
                     '''
@@ -119,7 +114,7 @@ EOF
                             cd /var/www/testapp/api
                             
                             # Set connection string as environment variable
-                            export ConnectionStrings__DefaultConnection="Server=${DB_SERVER};Database=testappDB;User Id=${DB_USER};Password=${DB_PASSWORD};TrustServerCertificate=True;Encrypt=True;"
+                            export ConnectionStrings__DefaultConnection="Server=\${DB_SERVER};Database=gusto;User Id=\${DB_USER};Password=\${DB_PASSWORD};TrustServerCertificate=True;Encrypt=True;"
                             
                             # Run EF migrations if available
                             if [ -f "testapp.Server.dll" ]; then
