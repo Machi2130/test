@@ -1,67 +1,79 @@
 pipeline {
     agent any
-
+    
     tools {
         nodejs 'node18'
     }
-
+    
     environment {
         NODE_HOME = tool 'node18'
         PATH = "${NODE_HOME}/bin:${PATH}"
     }
-
+    
     stages {
-
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/Machi2130/test'
             }
         }
-
+        
         stage('Build Backend') {
             steps {
-                sh """
-                echo >>> Restoring .NET packages
-                dotnet restore testapp.sln
-
-                echo >>> Publishing backend
-                dotnet publish testapp.Server -c Release -o /var/www/testapp/api
-                """
+                script {
+                    echo '>>> Restoring .NET packages'
+                    sh 'dotnet restore testapp.sln'
+                    
+                    echo '>>> Publishing backend'
+                    sh 'dotnet publish testapp.Server -c Release -o /var/www/testapp/api'
+                }
             }
         }
-
+        
         stage('Build Angular') {
             steps {
                 dir('testapp.client') {
-                    sh """
-                    echo >>> Installing Angular dependencies
-                    npm install
-
-                    echo >>> Building Angular for production
-                    ng build --configuration production
-                    """
+                    script {
+                        echo '>>> Installing Angular dependencies'
+                        sh 'npm install'
+                        
+                        echo '>>> Building Angular for production'
+                        sh 'npm run build -- --configuration production'
+                    }
                 }
-
-                sh """
-                rm -rf /var/www/testapp/ui/*
-                cp -r testapp.client/dist/testapp.client/* /var/www/testapp/ui/
-                """
+                
+                script {
+                    echo '>>> Deploying Angular build to web directory'
+                    sh '''
+                        rm -rf /var/www/testapp/ui/*
+                        cp -r testapp.client/dist/testapp.client/browser/* /var/www/testapp/ui/ 2>/dev/null || \
+                        cp -r testapp.client/dist/testapp.client/* /var/www/testapp/ui/
+                    '''
+                }
             }
         }
-
+        
         stage('Restart API') {
             steps {
-                sh 'sudo systemctl restart testapp'
+                script {
+                    echo '>>> Restarting testapp service'
+                    sh 'sudo systemctl restart testapp'
+                }
             }
         }
     }
-
+    
     post {
         success {
-            echo "🎉 Deployment completed successfully!"
+            echo '🎉 Deployment completed successfully!'
         }
         failure {
-            echo "❌ Deployment failed — check console logs."
+            echo '❌ Deployment failed — check console logs.'
+        }
+        always {
+            cleanWs(cleanWhenNotBuilt: false,
+                    deleteDirs: true,
+                    disableDeferredWipeout: true,
+                    notFailBuild: true)
         }
     }
 }
