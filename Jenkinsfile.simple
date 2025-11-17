@@ -1,0 +1,122 @@
+pipeline {
+    agent any
+
+    environment {
+        DOTNET_CLI_HOME = "/tmp/.dotnet"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Setup .NET') {
+            steps {
+                sh 'dotnet --version'
+            }
+        }
+
+        stage('Setup Node.js') {
+            steps {
+                sh 'node --version'
+                sh 'npm --version'
+            }
+        }
+
+        stage('Restore Dependencies') {
+            parallel {
+                stage('Restore .NET Dependencies') {
+                    steps {
+                        sh 'dotnet restore testapp.sln'
+                    }
+                }
+                stage('Install Node.js Dependencies') {
+                    steps {
+                        dir('testapp.client') {
+                            sh 'npm ci'
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Build Frontend') {
+            steps {
+                dir('testapp.client') {
+                    sh 'npm run build --prod'
+                }
+            }
+        }
+
+        stage('Build Backend') {
+            steps {
+                sh 'dotnet build testapp.sln --configuration Release'
+            }
+        }
+
+        stage('Publish Backend') {
+            steps {
+                sh 'dotnet publish testapp.Server/testapp.Server.csproj -c Release -o ./publish --no-build'
+            }
+        }
+
+        stage('Deploy and Run') {
+            steps {
+                script {
+                    // Stop any existing containers
+                    sh 'docker-compose down || true'
+
+                    // Start the application using docker-compose
+                    sh 'docker-compose up -d'
+
+                    // Wait for services to start
+                    sh 'sleep 30'
+
+                    // Check if services are running
+                    sh 'docker-compose ps'
+                }
+            }
+        }
+
+        stage('Health Check') {
+            steps {
+                script {
+                    // Simple health check
+                    sh '''
+                        MAX_ATTEMPTS=10
+                        ATTEMPT=1
+                        while [ $ATTEMPT -le $MAX_ATTEMPTS ]; do
+                            echo "Health check attempt $ATTEMPT/$MAX_ATTEMPTS"
+                            if curl -f --max-time 10 http://localhost > /dev/null 2>&1; then
+                                echo "✅ Application is running!"
+                                exit 0
+                            fi
+                            echo "⏳ Waiting for application to start..."
+                            sleep 10
+                            ATTEMPT=$((ATTEMPT + 1))
+                        done
+                        echo "❌ Application failed to start"
+                        exit 1
+                    '''
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Show running containers
+            sh 'docker-compose ps || true'
+        }
+        success {
+            echo '🎉 Pipeline succeeded! Application is running at http://localhost'
+        }
+        failure {
+            echo '💥 Pipeline failed!'
+            // Show logs for debugging
+            sh 'docker-compose logs || true'
+        }
+    }
+}

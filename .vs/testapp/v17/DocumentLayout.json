@@ -1,0 +1,1444 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5C8FA842-0B00-44BC-9013-44B0A970B20A}|testapp.Server\\testapp.Server.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5C8FA842-0B00-44BC-9013-44B0A970B20A}|testapp.Server\\testapp.Server.csproj|solutionrelative:testapp.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C8FA842-0B00-44BC-9013-44B0A970B20A}|testapp.Server\\testapp.Server.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C8FA842-0B00-44BC-9013-44B0A970B20A}|testapp.Server\\testapp.Server.csproj|solutionrelative:testapp.server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.domain\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|solutionrelative:testapp.domain\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\services\\login.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\services\\login.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\module\\all-user\\all-user.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\module\\all-user\\all-user.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\proxy.conf.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\proxy.conf.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\app-routing.module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\app-routing.module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\repositories\\userrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\repositories\\userrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.domain\\models\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|solutionrelative:testapp.domain\\models\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.domain\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|solutionrelative:testapp.domain\\interfaces\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\repositories\\sqlqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\repositories\\sqlqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\interfaces\\iuserrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\interfaces\\iuserrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C8FA842-0B00-44BC-9013-44B0A970B20A}|testapp.Server\\testapp.Server.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.server\\controllers\\applogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C8FA842-0B00-44BC-9013-44B0A970B20A}|testapp.Server\\testapp.Server.csproj|solutionrelative:testapp.server\\controllers\\applogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C8FA842-0B00-44BC-9013-44B0A970B20A}|testapp.Server\\testapp.Server.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C8FA842-0B00-44BC-9013-44B0A970B20A}|testapp.Server\\testapp.Server.csproj|solutionrelative:testapp.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\app.module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\app.module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\module\\dashboard\\dashboard.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\module\\dashboard\\dashboard.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\module\\dashboard-layout\\dashboard-layout.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\module\\dashboard-layout\\dashboard-layout.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\module\\dashboard-layout\\dashboard-layout.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\module\\dashboard-layout\\dashboard-layout.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\module\\dashboard\\dashboard.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\module\\dashboard\\dashboard.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\module\\dashboard\\dashboard.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\module\\dashboard\\dashboard.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\module\\app-log\\app-log.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\module\\app-log\\app-log.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\module\\all-user\\all-user.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\module\\all-user\\all-user.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\module\\all-user\\all-user.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\module\\all-user\\all-user.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\module\\app-log\\app-log.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\module\\app-log\\app-log.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\module\\report\\report.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\module\\report\\report.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\services\\report.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\services\\report.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\module\\report\\report.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\module\\report\\report.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\module\\dashboard-layout\\dashboard-layout.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\module\\dashboard-layout\\dashboard-layout.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\models\\user.model.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\models\\user.model.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\services\\auth.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\services\\auth.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\module\\add-user\\add-user.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\module\\add-user\\add-user.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\models\\add-user.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\models\\add-user.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\models\\login-response.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\models\\login-response.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\models\\report.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\models\\report.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.domain\\results\\authresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|solutionrelative:testapp.domain\\results\\authresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.domain\\services\\applogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|solutionrelative:testapp.domain\\services\\applogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\repositories\\applogrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\repositories\\applogrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\interfaces\\iapplogrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\interfaces\\iapplogrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\login\\login.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\login\\login.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\.vscode\\launch.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\.vscode\\launch.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\main.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\main.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\tsconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\tsconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\angular.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\angular.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\aspnetcore-https.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\aspnetcore-https.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\changelog.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\changelog.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.domain\\services\\mainreportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|solutionrelative:testapp.domain\\services\\mainreportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C8FA842-0B00-44BC-9013-44B0A970B20A}|testapp.Server\\testapp.Server.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.server\\controllers\\mainreportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C8FA842-0B00-44BC-9013-44B0A970B20A}|testapp.Server\\testapp.Server.csproj|solutionrelative:testapp.server\\controllers\\mainreportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\app.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\app.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\models\\app-log.model.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\models\\app-log.model.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\login\\login.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\login\\login.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\login\\login.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\login\\login.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\module\\app-log\\app-log.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\module\\app-log\\app-log.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\app.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\app.component.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\app.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\app.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\app.component.spec.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\app.component.spec.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\models\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\models\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\models\\rolepermission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\models\\rolepermission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\models\\permission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\models\\permission.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\models\\mainreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\models\\mainreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\models\\loginlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\models\\loginlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\models\\applog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\models\\applog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\interfaces\\irolepermissionrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\interfaces\\irolepermissionrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\interfaces\\imainreportrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\interfaces\\imainreportrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\interfaces\\iloginlogrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\interfaces\\iloginlogrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\context\\dapperdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\context\\dapperdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C8FA842-0B00-44BC-9013-44B0A970B20A}|testapp.Server\\testapp.Server.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.server\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5C8FA842-0B00-44BC-9013-44B0A970B20A}|testapp.Server\\testapp.Server.csproj|solutionrelative:testapp.server\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C8FA842-0B00-44BC-9013-44B0A970B20A}|testapp.Server\\testapp.Server.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.server\\testapp.server.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{5C8FA842-0B00-44BC-9013-44B0A970B20A}|testapp.Server\\testapp.Server.csproj|solutionrelative:testapp.server\\testapp.server.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.domain\\interfaces\\imainreportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|solutionrelative:testapp.domain\\interfaces\\imainreportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.domain\\models\\reportfilterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|solutionrelative:testapp.domain\\models\\reportfilterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\repositories\\mainreportrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\repositories\\mainreportrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\interceptors\\auth.interceptor.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\interceptors\\auth.interceptor.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\guards\\auth.guard.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\guards\\auth.guard.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\auth\\auth.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\auth\\auth.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\module\\dashboard-layout\\dashboard-layout.component.spec.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\module\\dashboard-layout\\dashboard-layout.component.spec.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\src\\app\\core\\module\\dashboard\\dashboard.component.spec.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\src\\app\\core\\module\\dashboard\\dashboard.component.spec.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C8FA842-0B00-44BC-9013-44B0A970B20A}|testapp.Server\\testapp.Server.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.server\\config\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C8FA842-0B00-44BC-9013-44B0A970B20A}|testapp.Server\\testapp.Server.csproj|solutionrelative:testapp.server\\config\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.domain\\utils\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|solutionrelative:testapp.domain\\utils\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.domain\\models\\loginrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|solutionrelative:testapp.domain\\models\\loginrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.domain\\interfaces\\iapplogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FD2736B-0195-4E2C-8426-33D4F74C249A}|testapp.Domain\\testapp.Domain.csproj|solutionrelative:testapp.domain\\interfaces\\iapplogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\repositories\\rolepermissionrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\repositories\\rolepermissionrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.dal\\repositories\\loginlogrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{063BCA93-E479-4A01-9970-A3EEF32C1606}|testapp.DAL\\testapp.DAL.csproj|solutionrelative:testapp.dal\\repositories\\loginlogrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\postcss.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\postcss.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|c:\\users\\shravani\\onedrive\\documents 1\\testapp\\testapp.client\\tailwind.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{48B44491-F984-1448-F739-3543BA32EB39}|testapp.client\\testapp.client.esproj|solutionrelative:testapp.client\\tailwind.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "testapp.Domain\\Services\\AuthService.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Services\\AuthService.cs",
+              "RelativeToolTip": "testapp.Domain\\Services\\AuthService.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAcwHIAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:50:02.967Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\appsettings.json",
+              "RelativeDocumentMoniker": "testapp.Server\\appsettings.json",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\appsettings.json",
+              "RelativeToolTip": "testapp.Server\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-08T08:59:36.898Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "app-routing.module.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\app-routing.module.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\app-routing.module.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\app-routing.module.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\app-routing.module.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-08T08:54:30.17Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "proxy.conf.js",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\proxy.conf.js",
+              "RelativeDocumentMoniker": "testapp.client\\src\\proxy.conf.js",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\proxy.conf.js",
+              "RelativeToolTip": "testapp.client\\src\\proxy.conf.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-10-08T08:55:12.963Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "all-user.component.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\all-user\\all-user.component.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Module\\all-user\\all-user.component.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\all-user\\all-user.component.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Module\\all-user\\all-user.component.ts",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-14T13:59:45.479Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "login.service.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Services\\login.service.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Services\\login.service.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Services\\login.service.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Services\\login.service.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-08T09:57:01.354Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "testapp.Server\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "testapp.Server\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAgwGkAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:48:03.776Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Interfaces\\IAuthService.cs",
+              "RelativeDocumentMoniker": "testapp.Domain\\Interfaces\\IAuthService.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Interfaces\\IAuthService.cs",
+              "RelativeToolTip": "testapp.Domain\\Interfaces\\IAuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:49:47.888Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserRepo.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Repositories\\UserRepo.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Repositories\\UserRepo.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Repositories\\UserRepo.cs",
+              "RelativeToolTip": "testapp.DAL\\Repositories\\UserRepo.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAASwBcAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:49:20.621Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "SqlQueries.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Repositories\\SqlQueries.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Repositories\\SqlQueries.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Repositories\\SqlQueries.cs",
+              "RelativeToolTip": "testapp.DAL\\Repositories\\SqlQueries.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:49:19.058Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Models\\User.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Models\\User.cs",
+              "RelativeToolTip": "testapp.DAL\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:49:07.314Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IUserRepo.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Interfaces\\IUserRepo.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Interfaces\\IUserRepo.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Interfaces\\IUserRepo.cs",
+              "RelativeToolTip": "testapp.DAL\\Interfaces\\IUserRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:48:54.688Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UserDto.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Models\\UserDto.cs",
+              "RelativeDocumentMoniker": "testapp.Domain\\Models\\UserDto.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Models\\UserDto.cs",
+              "RelativeToolTip": "testapp.Domain\\Models\\UserDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T13:30:13.482Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AppLogController.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\Controllers\\AppLogController.cs",
+              "RelativeDocumentMoniker": "testapp.Server\\Controllers\\AppLogController.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\Controllers\\AppLogController.cs",
+              "RelativeToolTip": "testapp.Server\\Controllers\\AppLogController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T10:23:43.753Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\Program.cs",
+              "RelativeDocumentMoniker": "testapp.Server\\Program.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\Program.cs",
+              "RelativeToolTip": "testapp.Server\\Program.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAqwG4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:31:22.904Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "app.module.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\app.module.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\app.module.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\app.module.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\app.module.ts",
+              "ViewState": "AgIAABcAAAAAAAAAAAAIwCEAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-08T08:51:39.512Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "dashboard.component.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\dashboard\\dashboard.component.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Module\\dashboard\\dashboard.component.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\dashboard\\dashboard.component.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Module\\dashboard\\dashboard.component.ts",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAEsAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-08T09:46:02.365Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "dashboard-layout.component.css",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\dashboard-layout\\dashboard-layout.component.css",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Module\\dashboard-layout\\dashboard-layout.component.css",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\dashboard-layout\\dashboard-layout.component.css",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Module\\dashboard-layout\\dashboard-layout.component.css",
+              "ViewState": "AgIAAGAAAAAAAAAAAAA2wHwAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-10-16T08:18:27.56Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "dashboard.component.css",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\dashboard\\dashboard.component.css",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Module\\dashboard\\dashboard.component.css",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\dashboard\\dashboard.component.css",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Module\\dashboard\\dashboard.component.css",
+              "ViewState": "AgIAAJAAAAAAAAAAAAA2wLAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-10-14T06:49:22.133Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "dashboard.component.html",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\dashboard\\dashboard.component.html",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Module\\dashboard\\dashboard.component.html",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\dashboard\\dashboard.component.html",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Module\\dashboard\\dashboard.component.html",
+              "ViewState": "AgIAAAsAAAAAAAAAAAA2wBwAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-10-08T09:16:52.87Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "app-log.component.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\app-log\\app-log.component.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Module\\app-log\\app-log.component.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\app-log\\app-log.component.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Module\\app-log\\app-log.component.ts",
+              "ViewState": "AgIAABcAAAAAAAAAAAAgwA4AAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-08T10:42:47.323Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "dashboard-layout.component.html",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\dashboard-layout\\dashboard-layout.component.html",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Module\\dashboard-layout\\dashboard-layout.component.html",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\dashboard-layout\\dashboard-layout.component.html",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Module\\dashboard-layout\\dashboard-layout.component.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-10-08T09:17:00.128Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "all-user.component.css",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\all-user\\all-user.component.css",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Module\\all-user\\all-user.component.css",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\all-user\\all-user.component.css",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Module\\all-user\\all-user.component.css",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAUwGIAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-10-15T13:53:18.883Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "app-log.component.html",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\app-log\\app-log.component.html",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Module\\app-log\\app-log.component.html",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\app-log\\app-log.component.html",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Module\\app-log\\app-log.component.html",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAC8AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-10-08T10:49:46.878Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "all-user.component.html",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\all-user\\all-user.component.html",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Module\\all-user\\all-user.component.html",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\all-user\\all-user.component.html",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Module\\all-user\\all-user.component.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-10-14T13:59:41.349Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "report.service.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Services\\report.service.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Services\\report.service.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Services\\report.service.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Services\\report.service.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-08T10:27:08.92Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "report.component.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\report\\report.component.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Module\\report\\report.component.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\report\\report.component.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Module\\report\\report.component.ts",
+              "ViewState": "AgIAADIAAAAAAAAAAAAIwDwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-08T10:16:19.587Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "report.component.html",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\report\\report.component.html",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Module\\report\\report.component.html",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\report\\report.component.html",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Module\\report\\report.component.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-10-08T10:29:53.256Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "dashboard-layout.component.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\dashboard-layout\\dashboard-layout.component.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Module\\dashboard-layout\\dashboard-layout.component.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\dashboard-layout\\dashboard-layout.component.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Module\\dashboard-layout\\dashboard-layout.component.ts",
+              "ViewState": "AgIAADMAAAAAAAAAAAAzwBEAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-08T09:17:04.896Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "user.model.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Models\\user.model.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Models\\user.model.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Models\\user.model.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Models\\user.model.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-14T13:46:30.637Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "auth.service.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Services\\auth.service.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Services\\auth.service.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Services\\auth.service.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Services\\auth.service.ts",
+              "ViewState": "AgIAACIAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-15T05:26:11.067Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "add-user.component.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\add-user\\add-user.component.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Module\\add-user\\add-user.component.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\add-user\\add-user.component.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Module\\add-user\\add-user.component.ts",
+              "ViewState": "AgIAABcAAAAAAAAAAAAgwCcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-08T10:02:43.386Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "add-user.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Models\\add-user.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Models\\add-user.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Models\\add-user.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Models\\add-user.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-14T12:28:18.981Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "login-response.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Models\\login-response.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Models\\login-response.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Models\\login-response.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Models\\login-response.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-14T13:42:03.727Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "report.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Models\\report.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Models\\report.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Models\\report.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Models\\report.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-14T13:42:02.457Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "AuthResult.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Results\\AuthResult.cs",
+              "RelativeDocumentMoniker": "testapp.Domain\\Results\\AuthResult.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Results\\AuthResult.cs",
+              "RelativeToolTip": "testapp.Domain\\Results\\AuthResult.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T13:35:19.619Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "AppLogService.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Services\\AppLogService.cs",
+              "RelativeDocumentMoniker": "testapp.Domain\\Services\\AppLogService.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Services\\AppLogService.cs",
+              "RelativeToolTip": "testapp.Domain\\Services\\AppLogService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:48:23.339Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "AppLogRepo.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Repositories\\AppLogRepo.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Repositories\\AppLogRepo.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Repositories\\AppLogRepo.cs",
+              "RelativeToolTip": "testapp.DAL\\Repositories\\AppLogRepo.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAgwBQAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:30:29.128Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "IAppLogRepo.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Interfaces\\IAppLogRepo.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Interfaces\\IAppLogRepo.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Interfaces\\IAppLogRepo.cs",
+              "RelativeToolTip": "testapp.DAL\\Interfaces\\IAppLogRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:48:50.308Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "login.component.css",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\login\\login.component.css",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\login\\login.component.css",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\login\\login.component.css",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\login\\login.component.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-10-09T07:59:28.771Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "launch.json",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\.vscode\\launch.json",
+              "RelativeDocumentMoniker": "testapp.client\\.vscode\\launch.json",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\.vscode\\launch.json",
+              "RelativeToolTip": "testapp.client\\.vscode\\launch.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-14T11:15:50.776Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "package.json",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\package.json",
+              "RelativeDocumentMoniker": "testapp.client\\package.json",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\package.json",
+              "RelativeToolTip": "testapp.client\\package.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-14T11:15:02.483Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "CHANGELOG.md",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\CHANGELOG.md",
+              "RelativeDocumentMoniker": "testapp.client\\CHANGELOG.md",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\CHANGELOG.md",
+              "RelativeToolTip": "testapp.client\\CHANGELOG.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-10-14T11:15:04.992Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "aspnetcore-https.js",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\aspnetcore-https.js",
+              "RelativeDocumentMoniker": "testapp.client\\aspnetcore-https.js",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\aspnetcore-https.js",
+              "RelativeToolTip": "testapp.client\\aspnetcore-https.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-10-14T11:15:06.925Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "tsconfig.json",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\tsconfig.json",
+              "RelativeDocumentMoniker": "testapp.client\\tsconfig.json",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\tsconfig.json",
+              "RelativeToolTip": "testapp.client\\tsconfig.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-14T11:15:13.047Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "index.html",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\index.html",
+              "RelativeDocumentMoniker": "testapp.client\\src\\index.html",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\index.html",
+              "RelativeToolTip": "testapp.client\\src\\index.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-10-14T11:15:34.743Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "main.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\main.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\main.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\main.ts",
+              "RelativeToolTip": "testapp.client\\src\\main.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-08T08:55:10.575Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "angular.json",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\angular.json",
+              "RelativeDocumentMoniker": "testapp.client\\angular.json",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\angular.json",
+              "RelativeToolTip": "testapp.client\\angular.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-14T07:24:35.55Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "MainReportService.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Services\\MainReportService.cs",
+              "RelativeDocumentMoniker": "testapp.Domain\\Services\\MainReportService.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Services\\MainReportService.cs",
+              "RelativeToolTip": "testapp.Domain\\Services\\MainReportService.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAlwCIAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T10:22:03.3Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "MainReportController.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\Controllers\\MainReportController.cs",
+              "RelativeDocumentMoniker": "testapp.Server\\Controllers\\MainReportController.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\Controllers\\MainReportController.cs",
+              "RelativeToolTip": "testapp.Server\\Controllers\\MainReportController.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAlwBkAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T10:23:56.947Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "app.component.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\app.component.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\app.component.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\app.component.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\app.component.ts",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAgwBYAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-08T08:51:26.139Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "app-log.model.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Models\\app-log.model.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Models\\app-log.model.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Models\\app-log.model.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Models\\app-log.model.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-08T10:40:21.036Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "styles.css",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\styles.css",
+              "RelativeDocumentMoniker": "testapp.client\\src\\styles.css",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\styles.css",
+              "RelativeToolTip": "testapp.client\\src\\styles.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-10-14T07:05:08.949Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 86,
+              "Title": "postcss.config.js",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\postcss.config.js",
+              "RelativeDocumentMoniker": "testapp.client\\postcss.config.js",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\postcss.config.js",
+              "RelativeToolTip": "testapp.client\\postcss.config.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-10-14T07:21:50.271Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 87,
+              "Title": "tailwind.config.js",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\tailwind.config.js",
+              "RelativeDocumentMoniker": "testapp.client\\tailwind.config.js",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\tailwind.config.js",
+              "RelativeToolTip": "testapp.client\\tailwind.config.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-10-14T07:22:15.839Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "login.component.html",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\login\\login.component.html",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\login\\login.component.html",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\login\\login.component.html",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\login\\login.component.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-10-08T08:57:01.808Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "login.component.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\login\\login.component.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\login\\login.component.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\login\\login.component.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\login\\login.component.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-08T08:56:55.966Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "app-log.component.css",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\app-log\\app-log.component.css",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Module\\app-log\\app-log.component.css",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\app-log\\app-log.component.css",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Module\\app-log\\app-log.component.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-10-09T11:29:13.548Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "app.component.spec.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\app.component.spec.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\app.component.spec.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\app.component.spec.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\app.component.spec.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACwAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-08T08:55:56.806Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "app.component.css",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\app.component.css",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\app.component.css",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\app.component.css",
+              "RelativeToolTip": "testapp.client\\src\\app\\app.component.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-10-08T12:43:57.219Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "app.component.html",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\app.component.html",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\app.component.html",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\app.component.html",
+              "RelativeToolTip": "testapp.client\\src\\app\\app.component.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-10-08T08:51:08.56Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "UserRole.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Models\\UserRole.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Models\\UserRole.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Models\\UserRole.cs",
+              "RelativeToolTip": "testapp.DAL\\Models\\UserRole.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:49:09.263Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "RolePermission.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Models\\RolePermission.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Models\\RolePermission.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Models\\RolePermission.cs",
+              "RelativeToolTip": "testapp.DAL\\Models\\RolePermission.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:49:05.567Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "Role.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Models\\Role.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Models\\Role.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Models\\Role.cs",
+              "RelativeToolTip": "testapp.DAL\\Models\\Role.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:49:04.187Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "Permission.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Models\\Permission.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Models\\Permission.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Models\\Permission.cs",
+              "RelativeToolTip": "testapp.DAL\\Models\\Permission.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:49:02.767Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "MainReport.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Models\\MainReport.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Models\\MainReport.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Models\\MainReport.cs",
+              "RelativeToolTip": "testapp.DAL\\Models\\MainReport.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T10:19:55.159Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "LoginLog.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Models\\LoginLog.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Models\\LoginLog.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Models\\LoginLog.cs",
+              "RelativeToolTip": "testapp.DAL\\Models\\LoginLog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:49:01.752Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 65,
+              "Title": "AppLog.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Models\\AppLog.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Models\\AppLog.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Models\\AppLog.cs",
+              "RelativeToolTip": "testapp.DAL\\Models\\AppLog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:49:00.081Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 66,
+              "Title": "IRolePermissionRepo.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Interfaces\\IRolePermissionRepo.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Interfaces\\IRolePermissionRepo.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Interfaces\\IRolePermissionRepo.cs",
+              "RelativeToolTip": "testapp.DAL\\Interfaces\\IRolePermissionRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:48:52.943Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 67,
+              "Title": "IMainReportRepo.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Interfaces\\IMainReportRepo.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Interfaces\\IMainReportRepo.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Interfaces\\IMainReportRepo.cs",
+              "RelativeToolTip": "testapp.DAL\\Interfaces\\IMainReportRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T10:20:02.604Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 68,
+              "Title": "ILoginLogRepo.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Interfaces\\ILoginLogRepo.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Interfaces\\ILoginLogRepo.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Interfaces\\ILoginLogRepo.cs",
+              "RelativeToolTip": "testapp.DAL\\Interfaces\\ILoginLogRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:48:51.756Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 69,
+              "Title": "DapperDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Context\\DapperDbContext.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Context\\DapperDbContext.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Context\\DapperDbContext.cs",
+              "RelativeToolTip": "testapp.DAL\\Context\\DapperDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T11:34:49.061Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 70,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "testapp.Server\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\Properties\\launchSettings.json",
+              "RelativeToolTip": "testapp.Server\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-08T11:03:05.118Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 71,
+              "Title": "testapp.Server.csproj",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\testapp.Server.csproj",
+              "RelativeDocumentMoniker": "testapp.Server\\testapp.Server.csproj",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\testapp.Server.csproj",
+              "RelativeToolTip": "testapp.Server\\testapp.Server.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-08T11:03:01.214Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 72,
+              "Title": "IMainReportService.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Interfaces\\IMainReportService.cs",
+              "RelativeDocumentMoniker": "testapp.Domain\\Interfaces\\IMainReportService.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Interfaces\\IMainReportService.cs",
+              "RelativeToolTip": "testapp.Domain\\Interfaces\\IMainReportService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T10:21:17.796Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 73,
+              "Title": "ReportFilterDto.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Models\\ReportFilterDto.cs",
+              "RelativeDocumentMoniker": "testapp.Domain\\Models\\ReportFilterDto.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Models\\ReportFilterDto.cs",
+              "RelativeToolTip": "testapp.Domain\\Models\\ReportFilterDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T10:21:04.337Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 74,
+              "Title": "MainReportRepo.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Repositories\\MainReportRepo.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Repositories\\MainReportRepo.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Repositories\\MainReportRepo.cs",
+              "RelativeToolTip": "testapp.DAL\\Repositories\\MainReportRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T10:19:31.094Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 75,
+              "Title": "auth.interceptor.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Interceptors\\auth.interceptor.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Interceptors\\auth.interceptor.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Interceptors\\auth.interceptor.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Interceptors\\auth.interceptor.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-08T09:57:59.066Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 76,
+              "Title": "auth.guard.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\guards\\auth.guard.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\guards\\auth.guard.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\guards\\auth.guard.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\guards\\auth.guard.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-08T09:57:42.825Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 77,
+              "Title": "auth.service.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\auth\\auth.service.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\auth\\auth.service.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\auth\\auth.service.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\auth\\auth.service.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-08T09:57:16.563Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 79,
+              "Title": "dashboard.component.spec.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\dashboard\\dashboard.component.spec.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Module\\dashboard\\dashboard.component.spec.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\dashboard\\dashboard.component.spec.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Module\\dashboard\\dashboard.component.spec.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-08T09:54:03.358Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 78,
+              "Title": "dashboard-layout.component.spec.ts",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\dashboard-layout\\dashboard-layout.component.spec.ts",
+              "RelativeDocumentMoniker": "testapp.client\\src\\app\\core\\Module\\dashboard-layout\\dashboard-layout.component.spec.ts",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.client\\src\\app\\core\\Module\\dashboard-layout\\dashboard-layout.component.spec.ts",
+              "RelativeToolTip": "testapp.client\\src\\app\\core\\Module\\dashboard-layout\\dashboard-layout.component.spec.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-10-08T09:52:08.717Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 80,
+              "Title": "JwtSettings.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\Config\\JwtSettings.cs",
+              "RelativeDocumentMoniker": "testapp.Server\\Config\\JwtSettings.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\Config\\JwtSettings.cs",
+              "RelativeToolTip": "testapp.Server\\Config\\JwtSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:48:12.098Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 81,
+              "Title": "PasswordHasher.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Utils\\PasswordHasher.cs",
+              "RelativeDocumentMoniker": "testapp.Domain\\Utils\\PasswordHasher.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Utils\\PasswordHasher.cs",
+              "RelativeToolTip": "testapp.Domain\\Utils\\PasswordHasher.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:50:06.484Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 82,
+              "Title": "LoginRequestDto.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Models\\LoginRequestDto.cs",
+              "RelativeDocumentMoniker": "testapp.Domain\\Models\\LoginRequestDto.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Models\\LoginRequestDto.cs",
+              "RelativeToolTip": "testapp.Domain\\Models\\LoginRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:49:50.803Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 83,
+              "Title": "IAppLogService.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Interfaces\\IAppLogService.cs",
+              "RelativeDocumentMoniker": "testapp.Domain\\Interfaces\\IAppLogService.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Domain\\Interfaces\\IAppLogService.cs",
+              "RelativeToolTip": "testapp.Domain\\Interfaces\\IAppLogService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:49:32.731Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 84,
+              "Title": "RolePermissionRepo.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Repositories\\RolePermissionRepo.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Repositories\\RolePermissionRepo.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Repositories\\RolePermissionRepo.cs",
+              "RelativeToolTip": "testapp.DAL\\Repositories\\RolePermissionRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:49:17.578Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 85,
+              "Title": "LoginLogRepo.cs",
+              "DocumentMoniker": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Repositories\\LoginLogRepo.cs",
+              "RelativeDocumentMoniker": "testapp.DAL\\Repositories\\LoginLogRepo.cs",
+              "ToolTip": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\Repositories\\LoginLogRepo.cs",
+              "RelativeToolTip": "testapp.DAL\\Repositories\\LoginLogRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T08:49:15.407Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

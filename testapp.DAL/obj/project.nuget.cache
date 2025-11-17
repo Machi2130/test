@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2tedGCAZkEM=",
+  "dgSpecHash": "so3g1CO5j/E=",
   "success": true,
   "projectFilePath": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.DAL\\testapp.DAL.csproj",
   "expectedPackageFiles": [
@@ -31,11 +31,15 @@
     "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\system.clientmodel\\1.5.1\\system.clientmodel.1.5.1.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\system.configuration.configurationmanager\\9.0.4\\system.configuration.configurationmanager.9.0.4.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.1\\system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\system.diagnostics.eventlog\\9.0.4\\system.diagnostics.eventlog.9.0.4.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.7.1\\system.identitymodel.tokens.jwt.7.7.1.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\system.memory.data\\8.0.1\\system.memory.data.8.0.1.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\system.security.cryptography.pkcs\\9.0.4\\system.security.cryptography.pkcs.9.0.4.nupkg.sha512",
-    "C:\\Users\\Shravani\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.4\\system.security.cryptography.protecteddata.9.0.4.nupkg.sha512"
+    "C:\\Users\\Shravani\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.4\\system.security.cryptography.protecteddata.9.0.4.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\system.text.json\\9.0.5\\system.text.json.9.0.5.nupkg.sha512"
   ],
   "logs": []
 }

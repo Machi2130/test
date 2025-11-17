@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8UC7PrwFaF4=",
+  "dgSpecHash": "jft7qIjMkNs=",
   "success": true,
   "projectFilePath": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\testapp.Server.csproj",
   "expectedPackageFiles": [
@@ -9,15 +9,30 @@
     "C:\\Users\\Shravani\\.nuget\\packages\\dapper\\2.1.66\\dapper.2.1.66.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\fluentvalidation\\12.0.0\\fluentvalidation.12.0.0.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\9.0.9\\microsoft.aspnetcore.authentication.jwtbearer.9.0.9.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.3.0\\microsoft.aspnetcore.http.abstractions.2.3.0.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.3.0\\microsoft.aspnetcore.http.features.2.3.0.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.9\\microsoft.aspnetcore.openapi.9.0.9.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\9.0.11\\microsoft.aspnetcore.spaproxy.9.0.11.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\8.0.0\\microsoft.bcl.asyncinterfaces.8.0.0.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.bcl.cryptography\\9.0.4\\microsoft.bcl.cryptography.9.0.4.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.data.sqlclient\\6.1.2\\microsoft.data.sqlclient.6.1.2.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\6.0.2\\microsoft.data.sqlclient.sni.runtime.6.0.2.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\9.0.4\\microsoft.extensions.caching.abstractions.9.0.4.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.extensions.caching.memory\\9.0.4\\microsoft.extensions.caching.memory.9.0.4.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.extensions.configuration\\9.0.9\\microsoft.extensions.configuration.9.0.9.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\9.0.9\\microsoft.extensions.configuration.abstractions.9.0.9.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.extensions.configuration.binder\\9.0.0\\microsoft.extensions.configuration.binder.9.0.0.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.9\\microsoft.extensions.dependencyinjection.9.0.9.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.9\\microsoft.extensions.dependencyinjection.abstractions.9.0.9.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.extensions.dependencymodel\\9.0.0\\microsoft.extensions.dependencymodel.9.0.0.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.extensions.diagnostics.abstractions\\9.0.0\\microsoft.extensions.diagnostics.abstractions.9.0.0.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\9.0.0\\microsoft.extensions.fileproviders.abstractions.9.0.0.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\9.0.0\\microsoft.extensions.hosting.abstractions.9.0.0.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.extensions.logging\\9.0.9\\microsoft.extensions.logging.9.0.9.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.9\\microsoft.extensions.logging.abstractions.9.0.9.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.extensions.options\\9.0.9\\microsoft.extensions.options.9.0.9.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\8.0.0\\microsoft.extensions.options.configurationextensions.8.0.0.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.extensions.primitives\\9.0.9\\microsoft.extensions.primitives.9.0.9.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.identity.client\\4.73.1\\microsoft.identity.client.4.73.1.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.identity.client.extensions.msal\\4.73.1\\microsoft.identity.client.extensions.msal.4.73.1.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\microsoft.identitymodel.abstractions\\8.0.1\\microsoft.identitymodel.abstractions.8.0.1.nupkg.sha512",
@@ -36,48 +51,17 @@
     "C:\\Users\\Shravani\\.nuget\\packages\\serilog.sinks.mssqlserver\\8.2.2\\serilog.sinks.mssqlserver.8.2.2.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\system.clientmodel\\1.5.1\\system.clientmodel.1.5.1.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\system.configuration.configurationmanager\\9.0.4\\system.configuration.configurationmanager.9.0.4.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.1\\system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\system.diagnostics.eventlog\\9.0.4\\system.diagnostics.eventlog.9.0.4.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.0.1\\system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\system.memory.data\\8.0.1\\system.memory.data.8.0.1.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\system.security.cryptography.pkcs\\9.0.4\\system.security.cryptography.pkcs.9.0.4.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.4\\system.security.cryptography.protecteddata.9.0.4.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
+    "C:\\Users\\Shravani\\.nuget\\packages\\system.text.json\\9.0.5\\system.text.json.9.0.5.nupkg.sha512",
     "C:\\Users\\Shravani\\.nuget\\packages\\uaparser\\3.1.47\\uaparser.3.1.47.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1510",
-      "level": "Warning",
-      "message": "PackageReference Microsoft.Extensions.DependencyInjection will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
-      "projectPath": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\testapp.Server.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\testapp.Server.csproj",
-      "targetGraphs": []
-    },
-    {
-      "code": "NU1510",
-      "level": "Warning",
-      "message": "PackageReference Microsoft.Extensions.Configuration will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
-      "projectPath": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\testapp.Server.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\testapp.Server.csproj",
-      "targetGraphs": []
-    },
-    {
-      "code": "NU1510",
-      "level": "Warning",
-      "message": "PackageReference Microsoft.Extensions.DependencyInjection will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
-      "projectPath": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\testapp.Server.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\testapp.Server.csproj",
-      "targetGraphs": []
-    },
-    {
-      "code": "NU1510",
-      "level": "Warning",
-      "message": "PackageReference Microsoft.Extensions.Configuration will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
-      "projectPath": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\testapp.Server.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\testapp.Server.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }

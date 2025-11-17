@@ -15,6 +15,7 @@ services:
       - ./docker/sqlserver/init:/docker-entrypoint-initdb.d
     networks:
       - testapp-network
+    restart: unless-stopped
 
   testapp:
     build:
@@ -32,8 +33,7 @@ services:
       - sqlserver
     networks:
       - testapp-network
-    volumes:
-      - ./testapp.Server/appsettings.Development.json:/app/appsettings.Development.json:ro
+    restart: unless-stopped
 
   nginx:
     image: nginx:alpine
@@ -46,6 +46,7 @@ services:
       - testapp
     networks:
       - testapp-network
+    restart: unless-stopped
 
 volumes:
   sqlserver_data:

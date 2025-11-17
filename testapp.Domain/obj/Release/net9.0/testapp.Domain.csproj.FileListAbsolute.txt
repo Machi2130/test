@@ -13,3 +13,19 @@ D:\Gusto\testapp\testapp.Domain\obj\Release\net9.0\testapp.Domain.dll
 D:\Gusto\testapp\testapp.Domain\obj\Release\net9.0\refint\testapp.Domain.dll
 D:\Gusto\testapp\testapp.Domain\obj\Release\net9.0\testapp.Domain.pdb
 D:\Gusto\testapp\testapp.Domain\obj\Release\net9.0\ref\testapp.Domain.dll
+C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\bin\Release\net9.0\testapp.Domain.deps.json
+C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\bin\Release\net9.0\testapp.Domain.dll
+C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\bin\Release\net9.0\testapp.Domain.pdb
+C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\bin\Release\net9.0\testapp.DAL.dll
+C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\bin\Release\net9.0\testapp.DAL.pdb
+C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\obj\Release\net9.0\testapp.Domain.csproj.AssemblyReference.cache
+C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\obj\Release\net9.0\testapp.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\obj\Release\net9.0\testapp.Domain.AssemblyInfoInputs.cache
+C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\obj\Release\net9.0\testapp.Domain.AssemblyInfo.cs
+C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\obj\Release\net9.0\testapp.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\obj\Release\net9.0\testapp.Domain.sourcelink.json
+C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\obj\Release\net9.0\testapp..E98898F7.Up2Date
+C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\obj\Release\net9.0\testapp.Domain.dll
+C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\obj\Release\net9.0\refint\testapp.Domain.dll
+C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\obj\Release\net9.0\testapp.Domain.pdb
+C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\obj\Release\net9.0\ref\testapp.Domain.dll

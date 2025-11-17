@@ -3,7 +3,7 @@
 "ServerUrl": "https://localhost:61311",
 "RedirectUrl": "",
 "LaunchCommand": "npm start",
-"WorkingDirectory": "D:\\Gusto\\testapp\\testapp.Server\\..\\testapp.client",
+"WorkingDirectory": "C:\\Users\\Shravani\\OneDrive\\Documents 1\\testapp\\testapp.Server\\..\\testapp.client",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }

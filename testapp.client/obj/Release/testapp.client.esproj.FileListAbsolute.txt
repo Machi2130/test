@@ -1,1 +1,2 @@
 D:\Gusto\testapp\testapp.client\obj\Release\testapp.client.esproj.CoreCompileInputs.cache
+C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.client\obj\Release\testapp.client.esproj.CoreCompileInputs.cache

@@ -28,3 +28,4 @@ C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\obj\Debug\net9.0\t
 C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\obj\Debug\net9.0\refint\testapp.Domain.dll
 C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\obj\Debug\net9.0\testapp.Domain.pdb
 C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\obj\Debug\net9.0\ref\testapp.Domain.dll
+C:\Users\Shravani\OneDrive\Documents 1\testapp\testapp.Domain\obj\Debug\net9.0\testapp.Domain.sourcelink.json
