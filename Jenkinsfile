@@ -1,167 +1,124 @@
 pipeline {
     agent any
-    
-    tools {
-        nodejs 'node18'
-    }
-    
+
     environment {
-        NODE_HOME = tool 'node18'
-        PATH = "${NODE_HOME}/bin:${PATH}"
+        DOTNET_ROOT = tool(name: 'dotnet9', type: 'dotnet')
+        PATH = "${DOTNET_ROOT}:${PATH}"
+        NODEJS = tool(name: 'node18', type: 'nodejs')
+        PATH = "${NODEJS}/bin:${PATH}"
     }
-    
+
     stages {
+
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/Machi2130/test'
             }
         }
-        
+
         stage('Build Backend') {
             steps {
                 withCredentials([
-                    string(credentialsId: 'DB_SERVER', variable: 'DB_SERVER'),
-                    string(credentialsId: 'DB_USER', variable: 'DB_USER'),
-                    string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD')
+                    string(credentialsId: 'db-server', variable: 'DB_SERVER'),
+                    string(credentialsId: 'db-user',   variable: 'DB_USER'),
+                    string(credentialsId: 'db-pass',   variable: 'DB_PASSWORD')
                 ]) {
+
                     script {
-                        echo '>>> Restoring .NET packages'
-                        sh 'dotnet restore testapp.sln'
-                        
-                        echo '>>> Publishing backend'
-                        sh 'dotnet publish testapp.Server -c Release -o /var/www/testapp/api'
-                        
-                        echo '>>> Configuring database connection'
+                        echo ">>> Restoring .NET"
+                        sh "dotnet restore testapp.sln"
+
+                        echo ">>> Publishing backend to TEMP folder"
                         sh """
-                            # Build connection string
-                            CONNECTION_STRING="Server=\${DB_SERVER};Database=gusto;User Id=\${DB_USER};Password=\${DB_PASSWORD};TrustServerCertificate=True;Encrypt=True;"
-                            
-                            # Update appsettings.json with connection string
-                            cat > /var/www/testapp/api/appsettings.Production.json << 'EOF'
-{
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  "AllowedHosts": "*",
-  "ConnectionStrings": {
-    "DefaultConnection": "PLACEHOLDER_CONNECTION_STRING"
-  }
-}
-EOF
-                            
-                            # Replace placeholder with actual connection string
-                            sed -i "s|PLACEHOLDER_CONNECTION_STRING|\${CONNECTION_STRING}|g" /var/www/testapp/api/appsettings.Production.json
-                            
-                            # Set proper ownership for www-data to run the service
-                            sudo chown -R www-data:www-data /var/www/testapp/api
-                            sudo chmod 640 /var/www/testapp/api/appsettings.Production.json
-                            
-                            echo '✅ Database connection configured'
+                            rm -rf publish_temp
+                            mkdir publish_temp
+                            dotnet publish testapp.Server -c Release -o publish_temp
+                        """
+
+                        echo ">>> Updating Production config"
+                        sh """
+                            sed -i "s|PLACEHOLDER_CONNECTION_STRING|Server=$DB_SERVER;Database=gusto;User Id=$DB_USER;Password=$DB_PASSWORD;TrustServerCertificate=True;Encrypt=True;|g" publish_temp/appsettings.Production.json
                         """
                     }
                 }
             }
         }
-        
+
         stage('Build Angular') {
             steps {
-                dir('testapp.client') {
-                    script {
-                        echo '>>> Installing Angular dependencies'
-                        sh 'npm install'
-                        
-                        echo '>>> Building Angular for production'
-                        sh 'npm run build -- --configuration production'
-                    }
+                dir("testapp.client") {
+                    echo ">>> Installing Angular dependencies"
+                    sh "npm install"
+
+                    echo ">>> Building Angular"
+                    sh "npm run build -- --configuration production"
                 }
-                
+
                 script {
-                    echo '>>> Deploying Angular build to web directory'
-                    sh '''
-                        # Clean existing files
-                        rm -rf /var/www/testapp/ui/*
-                        
-                        # Copy Angular build files
-                        if [ -d "testapp.client/dist/testapp.client/browser" ]; then
-                            cp -r testapp.client/dist/testapp.client/browser/* /var/www/testapp/ui/
-                        else
-                            cp -r testapp.client/dist/testapp.client/* /var/www/testapp/ui/
-                        fi
-                        
-                        # Set proper permissions for www-data
-                        sudo chown -R www-data:www-data /var/www/testapp/ui
-                        sudo chmod -R 755 /var/www/testapp/ui
-                        
-                        echo '✅ Angular deployment complete'
-                    '''
+                    echo ">>> Copy Angular dist to workspace"
+                    sh """
+                        rm -rf ng_temp
+                        mkdir ng_temp
+                        cp -r testapp.client/dist/testapp.client/browser/* ng_temp/
+                    """
                 }
             }
         }
-        
+
+        stage('Deploy Backend') {
+            steps {
+                script {
+                    echo ">>> Stopping API"
+                    sh "sudo systemctl stop testapp || true"
+
+                    echo ">>> Deploying backend"
+                    sh """
+                        sudo rsync -a --delete publish_temp/ /var/www/testapp/api/
+                        sudo chown -R jenkins:www-data /var/www/testapp
+                        sudo find /var/www/testapp -type d -exec chmod 775 {} +
+                        sudo find /var/www/testapp -type f -exec chmod 664 {} +
+                    """
+
+                    echo ">>> Starting API"
+                    sh "sudo systemctl start testapp"
+                }
+            }
+        }
+
         stage('Database Migration') {
             steps {
-                withCredentials([
-                    string(credentialsId: 'DB_SERVER', variable: 'DB_SERVER'),
-                    string(credentialsId: 'DB_USER', variable: 'DB_USER'),
-                    string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD')
-                ]) {
-                    script {
-                        echo '>>> Running database migrations'
-                        sh """
-                            cd /var/www/testapp/api
-                            
-                            # Set connection string as environment variable
-                            export ConnectionStrings__DefaultConnection="Server=\${DB_SERVER};Database=gusto;User Id=\${DB_USER};Password=\${DB_PASSWORD};TrustServerCertificate=True;Encrypt=True;"
-                            
-                            # Run EF migrations if available
-                            if [ -f "testapp.Server.dll" ]; then
-                                dotnet ef database update --no-build 2>/dev/null || echo 'ℹ️  No migrations to apply or EF not configured'
-                            fi
-                            
-                            echo '✅ Database migration check complete'
-                        """
-                    }
+                script {
+                    echo ">>> Running migrations"
+
+                    sh """
+                        cd /var/www/testapp/api
+                        export ConnectionStrings__DefaultConnection="Server=$DB_SERVER;Database=gusto;User Id=$DB_USER;Password=$DB_PASSWORD;TrustServerCertificate=True;Encrypt=True;"
+                        if [ -f testapp.Server.dll ]; then
+                            dotnet ef database update || echo "ℹ️  EF not configured or no migrations"
+                        fi
+                    """
                 }
             }
         }
-        
-        stage('Restart API') {
+
+        stage('Deploy Angular') {
             steps {
                 script {
-                    echo '>>> Restarting testapp service'
-                    sh '''
-                        sudo systemctl stop testapp || true
-                        sleep 2
-                        sudo systemctl start testapp
-                        sleep 3
-                        sudo systemctl status testapp
-                    '''
-                    echo '✅ Service restarted successfully'
+                    echo ">>> Deploying Angular UI"
+                    sh """
+                        sudo rsync -a --delete ng_temp/ /var/www/testapp/ui/
+                        sudo chown -R jenkins:www-data /var/www/testapp/ui
+                        sudo chmod -R 755 /var/www/testapp/ui
+                    """
+                    echo "✓ Angular deployment complete"
                 }
             }
         }
     }
-    
+
     post {
-        success {
-            echo '🎉 Deployment completed successfully!'
-            echo '📊 Deployment Summary:'
-            echo '   ✅ Backend deployed to /var/www/testapp/api'
-            echo '   ✅ Frontend deployed to /var/www/testapp/ui'
-            echo '   ✅ Database configured'
-            echo '   ✅ Service restarted'
-        }
-        failure {
-            echo '❌ Deployment failed — check console logs.'
-        }
         always {
-            cleanWs(cleanWhenNotBuilt: false,
-                    deleteDirs: true,
-                    disableDeferredWipeout: true,
-                    notFailBuild: true)
+            echo "Build complete (no workspace cleanup)"
         }
     }
 }
