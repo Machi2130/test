@@ -2,11 +2,12 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'node18'   // Jenkins NodeJS installation name
+        nodejs 'node18'
     }
 
     environment {
-        ASPNETCORE_ENVIRONMENT = "Production"
+        NODE_HOME = tool 'node18'
+        PATH = "${NODE_HOME}/bin:${PATH}"
     }
 
     stages {
@@ -20,11 +21,11 @@ pipeline {
         stage('Build Backend') {
             steps {
                 sh """
-                    echo ">>> Restoring .NET packages"
-                    dotnet restore testapp.sln
+                echo >>> Restoring .NET packages
+                dotnet restore testapp.sln
 
-                    echo ">>> Publishing backend"
-                    dotnet publish testapp.Server -c Release -o /var/www/testapp/api
+                echo >>> Publishing backend
+                dotnet publish testapp.Server -c Release -o /var/www/testapp/api
                 """
             }
         }
@@ -33,34 +34,31 @@ pipeline {
             steps {
                 dir('testapp.client') {
                     sh """
-                        echo ">>> Installing Angular dependencies"
-                        npm install
+                    echo >>> Installing Angular dependencies
+                    npm install
 
-                        echo ">>> Building Angular for production"
-                        ng build --configuration production
+                    echo >>> Building Angular for production
+                    ng build --configuration production
                     """
                 }
 
                 sh """
-                    echo ">>> Clearing old UI files"
-                    rm -rf /var/www/testapp/ui/*
-
-                    echo ">>> Copying new Angular build"
-                    cp -r testapp.client/dist/testapp.client/* /var/www/testapp/ui/
+                rm -rf /var/www/testapp/ui/*
+                cp -r testapp.client/dist/testapp.client/* /var/www/testapp/ui/
                 """
             }
         }
 
         stage('Restart API') {
             steps {
-                sh "sudo systemctl restart testapp"
+                sh 'sudo systemctl restart testapp'
             }
         }
     }
 
     post {
         success {
-            echo "🚀 Deployment successful!"
+            echo "🎉 Deployment completed successfully!"
         }
         failure {
             echo "❌ Deployment failed — check console logs."
