@@ -3,9 +3,10 @@ pipeline {
 
     environment {
         DOTNET_ROOT = tool(name: 'dotnet9', type: 'dotnet')
-        PATH = "${DOTNET_ROOT}:${PATH}"
         NODEJS = tool(name: 'node18', type: 'nodejs')
-        PATH = "${NODEJS}/bin:${PATH}"
+
+        // PATH only defined once
+        PATH = "${DOTNET_ROOT}:${NODEJS}/bin:${PATH}"
     }
 
     stages {
@@ -23,7 +24,6 @@ pipeline {
                     string(credentialsId: 'db-user',   variable: 'DB_USER'),
                     string(credentialsId: 'db-pass',   variable: 'DB_PASSWORD')
                 ]) {
-
                     script {
                         echo ">>> Restoring .NET"
                         sh "dotnet restore testapp.sln"
