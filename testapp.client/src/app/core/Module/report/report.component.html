@@ -1,0 +1,101 @@
+<div class="report-container" *ngIf="hasPermission; else noAccess" #reportContainer #dataToExport>
+  <h2 class="report-title">SCADA Reports</h2>
+
+  <form (ngSubmit)="applyFilter()" class="filter-form" #filterForm="ngForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Start Date</mat-label>
+      <input matInput [matDatepicker]="picker1" [(ngModel)]="filter.startDate" name="startDate" required
+        #startDate="ngModel">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+      <mat-error *ngIf="startDate.invalid && startDate.touched">
+        Start date is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>End Date</mat-label>
+      <input matInput [matDatepicker]="picker2" [(ngModel)]="filter.endDate" name="endDate" required #endDate="ngModel">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+      <mat-error *ngIf="endDate.invalid && endDate.touched">
+        End date is required
+      </mat-error>
+    </mat-form-field>
+
+    <div *ngIf="dateError" class="date-error">
+      {{ dateError }}
+    </div>
+
+    <button mat-raised-button color="primary" type="submit">Load Report</button>
+    <!--<button mat-raised-button color="warn" type="button" (click)="downloadTablePdf()"
+      [disabled]="!dataSource || !dataSource.data.length">
+      Download Report
+    </button>-->
+
+
+  </form>
+
+  <div *ngIf="loading" class="loading-text">Loading reports...</div>
+
+  <div class="table-container" *ngIf="dataSource.data.length">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" #tableToExport>
+      <tr style="display:none!important">
+        <ng-container matColumnDef="reportId">
+          <th mat-header-cell *matHeaderCellDef> Report ID </th>
+          <td mat-cell *matCellDef="let r"> {{r.reportId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="operationId">
+          <th mat-header-cell *matHeaderCellDef> Operation ID </th>
+          <td mat-cell *matCellDef="let r"> {{r.operationId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="supervisorId">
+          <th mat-header-cell *matHeaderCellDef> Supervisor ID </th>
+          <td mat-cell *matCellDef="let r"> {{r.supervisorId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="operationDate">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td mat-cell *matCellDef="let r"> {{r.operationDate | date}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="operationStartTime">
+          <th mat-header-cell *matHeaderCellDef> Start Time </th>
+          <td mat-cell *matCellDef="let r"> {{r.operationStartTime}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="operationEndTime">
+          <th mat-header-cell *matHeaderCellDef> End Time </th>
+          <td mat-cell *matCellDef="let r"> {{r.operationEndTime}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ugst">
+          <th mat-header-cell *matHeaderCellDef> UGST </th>
+          <td mat-cell *matCellDef="let r"> {{r.ugst}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="initialLevelAtUGST">
+          <th mat-header-cell *matHeaderCellDef> Initial Level </th>
+          <td mat-cell *matCellDef="let r"> {{r.initialLevelAtUGST}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="createdAt">
+          <th mat-header-cell *matHeaderCellDef> Created At </th>
+          <td mat-cell *matCellDef="let r"> {{r.createdAt | date:'short'}} </td>
+        </ng-container>
+      <tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <mat-paginator [pageSize]="50" [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons></mat-paginator>
+</div>
+
+<ng-template #noAccess>
+  <div class="not-authorized">
+    <h3>You are not authorized to view Scada reports.</h3>
+  </div>
+</ng-template>

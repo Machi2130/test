@@ -1,0 +1,43 @@
+<div class="dashboard-root">
+  <!-- Top mobile bar (visible on small screens) -->
+  <div class="mobile-topbar">
+    <button class="hamburger" (click)="toggleSidebar()">☰</button>
+    <div class="mobile-title">Gusto dashboard</div>
+    <div class="mobile-space"></div>
+  </div>
+
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar" [class.open]="sidebarOpen" (click)="$event.stopPropagation()">
+      <button *ngIf="canViewReports"
+              mat-raised-button
+              routerLink="/dashboard/report"
+              (click)="closeSidebarOnMobile()">
+        📑 Scada Reports
+      </button>
+      <button *ngIf="canViewLogs"
+              mat-raised-button
+              routerLink="/dashboard/logs"
+              (click)="closeSidebarOnMobile()">
+        📝 View Logs
+      </button>
+      <button *ngIf="canViewUser"
+              mat-raised-button
+              routerLink="/dashboard/users"
+              (click)="closeSidebarOnMobile()">
+        👤 View User
+      </button>
+    </aside>
+
+    <!-- overlay for mobile when sidebar open -->
+    <div class="overlay" *ngIf="sidebarOpen" (click)="toggleSidebar()"></div>
+
+    <!-- Main Content -->
+    <div class="main-content" (click)="closeSidebarOnMobile()">
+      <section class="message">
+        <h2>Welcome to the Scada report dashboard</h2>
+      </section>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+/* Filter section styling */
+.filter-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
+  justify-content: center;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.filter-section mat-form-field {
+  width: 200px;
+}
+
+.filter-section button {
+  height: 56px; /* aligns with mat-form-field height */
+}
+
+/* Loading indicator */
+div[ng-reflect-ng-if="true"] {
+  margin: 10px 0;
+  font-weight: bold;
+  color: #1976d2; /* Primary color */
+}
+
+/* Material table styling */
+table.mat-table {
+  width: 100%;
+  overflow: auto;
+  margin-bottom: 16px;
+}
+
+.mat-elevation-z8 {
+  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2), 
+              0px 8px 10px 1px rgba(0,0,0,0.14), 
+              0px 3px 14px 2px rgba(0,0,0,0.12);
+}
+
+/* Table header */
+.mat-header-cell {
+  font-weight: bold;
+  background-color: #f5f5f5;
+}
+
+/* Table rows hover effect */
+.mat-row:hover {
+  background-color: #e3f2fd;
+}
+
+/* Table cell styling */
+.mat-cell, .mat-header-cell {
+  padding: 8px 16px;
+  word-break: break-word;
+}
+
+/* Paginator spacing */
+mat-paginator {
+  margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .filter-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-section mat-form-field, 
+  .filter-section button {
+    width: 100%;
+  }
+}

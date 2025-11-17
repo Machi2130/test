@@ -1,0 +1,18 @@
+[Unit]
+Description=TestApp .NET Web Application
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/testapp
+ExecStart=/usr/bin/dotnet /opt/testapp/testapp.Server.dll
+Restart=always
+RestartSec=10
+SyslogIdentifier=testapp
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+
+[Install]
+WantedBy=multi-user.target

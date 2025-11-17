@@ -1,0 +1,1 @@
+D:\Gusto\testapp\testapp.client\obj\Release\testapp.client.esproj.CoreCompileInputs.cache

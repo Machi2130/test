@@ -1,0 +1,19 @@
+<nav class="navbar">
+  <span class="logo" routerLink="/dashboard">Gusto dashboard</span>
+  <div class="nav-right">
+    <h1>Welcome, {{ username }} 👋</h1>
+    <div class="dropdown" [class.open]="dropdownOpen">
+      <button class="dropdown-btn" (click)="toggleDropdown()">Settings🌐</button>
+      <ul class="dropdown-menu">
+        <li *ngIf="canAddUser" (click)="addUser()">➕ Add User</li>
+        <li (click)="logout()">✖️ Logout</li>
+        <li>
+          <a routerLink="/dashboard/grid-report" (click)="toggleDropdown()">📊 Grid Report</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="page-content">
+  <router-outlet></router-outlet>
+</div>

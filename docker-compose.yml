@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: testapp-sqlserver
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: YourStrong!Passw0rd
+      MSSQL_PID: Express
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+      - ./docker/sqlserver/init:/docker-entrypoint-initdb.d
+    networks:
+      - testapp-network
+
+  testapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: testapp-app
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:5000
+      ConnectionStrings__DefaultConnection: Server=sqlserver,1433;Database=testapp;User ID=sa;Password=YourStrong!Passw0rd;Encrypt=False;TrustServerCertificate=True;
+      ConnectionStrings__ReportConnection: Server=sqlserver,1433;Database=testapp_reports;User ID=sa;Password=YourStrong!Passw0rd;Encrypt=False;TrustServerCertificate=True;
+    ports:
+      - "5000:5000"
+    depends_on:
+      - sqlserver
+    networks:
+      - testapp-network
+    volumes:
+      - ./testapp.Server/appsettings.Development.json:/app/appsettings.Development.json:ro
+
+  nginx:
+    image: nginx:alpine
+    container_name: testapp-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - testapp
+    networks:
+      - testapp-network
+
+volumes:
+  sqlserver_data:
+
+networks:
+  testapp-network:
+    driver: bridge

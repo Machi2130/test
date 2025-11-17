@@ -1,0 +1,27 @@
+<div class="container mt-3">
+  <h3>All Users</h3>
+
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+  <table *ngIf="users.length" class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Is Active</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.userId }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.isActive ? 'Yes' : 'No' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!users.length && !loading">No users found.</div>
+</div>

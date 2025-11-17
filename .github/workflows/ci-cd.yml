@@ -1,0 +1,76 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: testapp.client/package-lock.json
+
+    - name: Restore .NET dependencies
+      run: dotnet restore testapp.sln
+
+    - name: Install Node.js dependencies
+      run: |
+        cd testapp.client
+        npm ci
+
+    - name: Build Frontend
+      run: |
+        cd testapp.client
+        npm run build --prod
+
+    - name: Build Backend
+      run: dotnet build testapp.sln --configuration Release --no-restore
+
+    - name: Run tests
+      run: dotnet test testapp.sln --configuration Release --no-build --verbosity normal
+
+    - name: Publish Backend
+      run: dotnet publish testapp.Server/testapp.Server.csproj -c Release -o ./publish --no-build
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: testapp-build
+        path: publish/
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: testapp-build
+        path: publish/
+
+    - name: Deploy to server
+      run: |
+        echo "Deploy step - configure based on your deployment target"
+        # Add your deployment commands here
+        # Example: rsync, scp, or cloud deployment commands

@@ -1,0 +1,12 @@
+D:\Gusto\testapp\testapp.DAL\bin\Release\net9.0\testapp.DAL.deps.json
+D:\Gusto\testapp\testapp.DAL\bin\Release\net9.0\testapp.DAL.dll
+D:\Gusto\testapp\testapp.DAL\bin\Release\net9.0\testapp.DAL.pdb
+D:\Gusto\testapp\testapp.DAL\obj\Release\net9.0\testapp.DAL.csproj.AssemblyReference.cache
+D:\Gusto\testapp\testapp.DAL\obj\Release\net9.0\testapp.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Gusto\testapp\testapp.DAL\obj\Release\net9.0\testapp.DAL.AssemblyInfoInputs.cache
+D:\Gusto\testapp\testapp.DAL\obj\Release\net9.0\testapp.DAL.AssemblyInfo.cs
+D:\Gusto\testapp\testapp.DAL\obj\Release\net9.0\testapp.DAL.csproj.CoreCompileInputs.cache
+D:\Gusto\testapp\testapp.DAL\obj\Release\net9.0\testapp.DAL.dll
+D:\Gusto\testapp\testapp.DAL\obj\Release\net9.0\refint\testapp.DAL.dll
+D:\Gusto\testapp\testapp.DAL\obj\Release\net9.0\testapp.DAL.pdb
+D:\Gusto\testapp\testapp.DAL\obj\Release\net9.0\ref\testapp.DAL.dll

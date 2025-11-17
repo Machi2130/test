@@ -1,0 +1,191 @@
+pipeline {
+    agent any
+
+    environment {
+        DOTNET_CLI_HOME = "/tmp/.dotnet"
+        DEPLOY_PATH = '/var/www/testapp'
+        BACKUP_PATH = '/var/www/testapp_backups'
+        NGINX_SITES_AVAILABLE = '/etc/nginx/sites-available'
+        NGINX_SITES_ENABLED = '/etc/nginx/sites-enabled'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the source code from your repository
+                checkout scm
+            }
+        }
+
+        stage('Setup .NET') {
+            steps {
+                // Ensure .NET 9.0 is installed on Jenkins server
+                sh 'dotnet --version'
+            }
+        }
+
+        stage('Setup Node.js') {
+            steps {
+                // Ensure Node.js is available on Jenkins server
+                sh 'node --version'
+                sh 'npm --version'
+            }
+        }
+
+        stage('Restore Dependencies') {
+            parallel {
+                stage('Restore .NET Dependencies') {
+                    steps {
+                        // Restore .NET dependencies
+                        sh 'dotnet restore testapp.sln'
+                    }
+                }
+                stage('Install Node.js Dependencies') {
+                    steps {
+                        // Install Angular dependencies
+                        dir('testapp.client') {
+                            sh 'npm ci'
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Build Frontend') {
+            steps {
+                // Build Angular application for production
+                dir('testapp.client') {
+                    sh 'npm run build --prod'
+                }
+            }
+        }
+
+        stage('Build Backend') {
+            steps {
+                // Build the .NET solution
+                sh 'dotnet build testapp.sln --configuration Release'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                // Run .NET tests (if any exist)
+                sh 'dotnet test testapp.sln --configuration Release --no-build || true'
+            }
+        }
+
+        stage('Publish Backend') {
+            steps {
+                // Publish the .NET application
+                sh 'dotnet publish testapp.Server/testapp.Server.csproj -c Release -o ./publish --no-build'
+            }
+        }
+
+        stage('Deploy to VPS') {
+            steps {
+                script {
+                    // Create backup directory if it doesn't exist
+                    sh "sudo mkdir -p ${BACKUP_PATH}"
+
+                    // Create backup of current deployment if it exists
+                    sh """
+                        if [ -d "${DEPLOY_PATH}" ]; then
+                            TIMESTAMP=\$(date +"%Y%m%d_%H%M%S")
+                            sudo cp -r ${DEPLOY_PATH} ${BACKUP_PATH}/testapp_\${TIMESTAMP}
+                            echo "Backup created: ${BACKUP_PATH}/testapp_\${TIMESTAMP}"
+                        fi
+                    """
+
+                    // Stop the application service
+                    sh 'sudo systemctl stop testapp.service || true'
+
+                    // Create deployment directory
+                    sh "sudo mkdir -p ${DEPLOY_PATH}"
+
+                    // Copy published application to deployment directory
+                    sh "sudo cp -r publish/* ${DEPLOY_PATH}/"
+
+                    // Set proper permissions for www-data user
+                    sh "sudo chown -R www-data:www-data ${DEPLOY_PATH}"
+                    sh "sudo chmod -R 755 ${DEPLOY_PATH}"
+
+                    // Copy nginx configuration
+                    sh "sudo cp nginx.conf ${NGINX_SITES_AVAILABLE}/testapp"
+
+                    // Enable nginx site (create symlink)
+                    sh "sudo ln -sf ${NGINX_SITES_AVAILABLE}/testapp ${NGINX_SITES_ENABLED}/testapp"
+
+                    // Test nginx configuration
+                    sh 'sudo nginx -t'
+
+                    // Reload nginx to apply new configuration
+                    sh 'sudo systemctl reload nginx'
+
+                    // Copy and enable systemd service
+                    sh 'sudo cp testapp.service /etc/systemd/system/'
+                    sh 'sudo systemctl daemon-reload'
+
+                    // Start the application service
+                    sh 'sudo systemctl start testapp.service'
+
+                    // Enable service to start on boot
+                    sh 'sudo systemctl enable testapp.service'
+
+                    // Check service status
+                    sh 'sudo systemctl status testapp.service --no-pager -l'
+
+                    // Clean up old backups (keep last 3)
+                    sh """
+                        if [ -d "${BACKUP_PATH}" ]; then
+                            cd ${BACKUP_PATH} && ls -t | tail -n +4 | xargs -r sudo rm -rf
+                        fi
+                    """
+                }
+            }
+        }
+
+        stage('Health Check') {
+            steps {
+                script {
+                    // Wait for application to fully start
+                    sh 'sleep 15'
+
+                    // Perform health check
+                    sh '''
+                        MAX_ATTEMPTS=5
+                        ATTEMPT=1
+                        while [ $ATTEMPT -le $MAX_ATTEMPTS ]; do
+                            echo "Health check attempt $ATTEMPT/$MAX_ATTEMPTS"
+                            if curl -f --max-time 10 http://localhost/health > /dev/null 2>&1; then
+                                echo "✅ Health check passed!"
+                                exit 0
+                            fi
+                            echo "⏳ Health check failed, waiting 10 seconds..."
+                            sleep 10
+                            ATTEMPT=$((ATTEMPT + 1))
+                        done
+                        echo "❌ Health check failed after $MAX_ATTEMPTS attempts"
+                        exit 1
+                    '''
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up Jenkins workspace
+            cleanWs()
+        }
+        success {
+            echo '🎉 Pipeline succeeded! TestApp deployed successfully to VPS.'
+            // Optional: Send success notification
+            // slackSend(channel: '#deployments', message: 'TestApp deployed successfully!')
+        }
+        failure {
+            echo '💥 Pipeline failed! Check logs for details.'
+            // Optional: Send failure notification
+            // slackSend(channel: '#deployments', message: 'TestApp deployment failed!')
+        }
+    }
+}

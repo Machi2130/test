@@ -1,0 +1,176 @@
+/* ---------- Base / Desktop ---------- */
+.dashboard-root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to right, #0b033b, #001f99);
+  color: white;
+  overflow: hidden;
+}
+
+/* mobile topbar (hidden on desktop) */
+.mobile-topbar {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background: rgba(17,24,39,0.95); /* dark top bar */
+  color: #fff;
+}
+
+  .mobile-topbar .hamburger {
+    font-size: 1.3rem;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  .mobile-topbar .mobile-title {
+    font-weight: 700;
+  }
+
+  .mobile-topbar .mobile-space {
+    width: 36px;
+  }
+/* keep spacing right */
+
+/* main layout */
+.dashboard-container {
+  display: flex;
+  flex: 1;
+  height: calc(100% - 0px);
+}
+
+/* sidebar */
+.sidebar {
+  width: 220px;
+  min-width: 220px;
+  background: #0a093d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.35);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  z-index: 30;
+}
+
+/* main content */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.message h2 {
+  color: #e0e0e0;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* card */
+.dashboard-card {
+  background: rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 80%;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+}
+
+  .dashboard-card h3 {
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .dashboard-card ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    color: #f1f1f1;
+  }
+
+  .dashboard-card p {
+    color: #ccc;
+    text-align: center;
+  }
+
+/* ---------- Mobile / Responsive rules ---------- */
+@media (max-width: 992px) {
+  .sidebar {
+    width: 200px;
+    min-width: 200px;
+  }
+
+  .dashboard-card {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  /* show mobile topbar */
+  .mobile-topbar {
+    display: flex;
+  }
+
+  /* stack layout vertically: sidebar overlays instead of taking space */
+  .dashboard-container {
+    position: relative;
+  }
+
+  /* hide the sidebar by translating left when closed */
+  .sidebar {
+    position: fixed;
+    top: 56px; /* below mobile topbar */
+    left: 0;
+    height: calc(100% - 56px);
+    transform: translateX(-110%);
+    opacity: 0;
+  }
+
+    /* when `open` class is present, slide in */
+    .sidebar.open {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+  /* overlay behind sidebar */
+  .overlay {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 20;
+  }
+
+  /* main content adjust so it sits beneath topbar */
+  .main-content {
+    padding: 1rem;
+    margin-top: 56px;
+  }
+
+  /* slightly larger buttons on mobile */
+  .sidebar button {
+    width: 90%;
+    font-size: 1rem;
+    padding: 12px 8px;
+  }
+}
+
+/* small-screen adjustments for very narrow screens */
+@media (max-width: 420px) {
+  .sidebar button {
+    font-size: 0.95rem;
+    padding: 10px 6px;
+  }
+
+  .dashboard-card {
+    width: 95%;
+    padding: 1rem;
+  }
+}
