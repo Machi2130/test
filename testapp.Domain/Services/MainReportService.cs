@@ -1,9 +1,10 @@
-﻿using testapp.DAL.Interfaces;
+using testapp.DAL.Interfaces;
 using testapp.DAL.Models;
 using testapp.Domain.Interfaces;
 using testapp.Domain.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
+using System.Runtime.InteropServices;
 
 namespace testapp.Domain.Services
 {
@@ -29,7 +30,12 @@ namespace testapp.Domain.Services
         {
             var username = __httpContextAccessor.HttpContext?.User?.Identity?.Name ?? "Anonymous";
 
-            var indianTimeZone = TimeZoneInfo.FindSystemTimeZoneById("India Standard time");
+            // Cross-platform timezone support
+            var timeZoneId = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+                ? "India Standard Time"  // Windows timezone ID
+                : "Asia/Kolkata";        // Linux/macOS timezone ID (IANA)
+
+            var indianTimeZone = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
             var indianTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, indianTimeZone);
 
             filter.StartDate = TimeZoneInfo.ConvertTimeFromUtc(filter.StartDate, indianTimeZone);
@@ -41,8 +47,6 @@ namespace testapp.Domain.Services
             var reports = await _repo.GetReportsByDateRangeAsync(filter.StartDate, filter.EndDate);
 
             return reports;
-
-            //return await _repo.GetReportsByDateRangeAsync(filter.StartDate, filter.EndDate);
         }
     }
 }
