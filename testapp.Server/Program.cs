@@ -13,7 +13,7 @@ using testapp.Domain.Services;
 using testapp.Server.Config;
 
 var builder = WebApplication.CreateBuilder(args);
-app.UseDeveloperExceptionPage();
+
 
 // Add services to the container.
 
