@@ -337,4 +337,4 @@ See `complete-deployment-guide.md` for detailed deployment instructions.
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+
