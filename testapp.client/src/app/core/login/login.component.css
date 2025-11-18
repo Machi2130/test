@@ -1,3 +1,7 @@
+/* ============================
+   Login Page - Modern Industry Colors
+   ============================ */
+
 .login-wrapper {
   display: flex;
   align-items: center;
@@ -5,62 +9,67 @@
   height: 100vh;
   margin-top: -20px;
   margin-bottom: -50px;
-  background: #3F5EFB;
-  background: linear-gradient(to right, #0b033b, #001f99);
+
+  /* Professional clean gradient */
+  background: linear-gradient(135deg, #0a1f44, #1a73e8);
 }
 
-
+/* Card Style */
 .login-container {
   width: 100%;
   max-width: 400px;
   align-items: center;
   padding: 35px 30px;
-  background: radial-gradient(circle,rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+
+  /* Clean white card with subtle gradient */
+  background: linear-gradient(180deg, #ffffff, #f4f7fb);
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+
   animation: fadeIn 0.8s ease-in-out;
 }
-
 
 .login-container h2 {
   text-align: center;
   margin-bottom: 25px;
-  color: #333;
+  color: #1e1e1e;
   font-size: 26px;
+  font-weight: 600;
 }
 
-
+/* Input Group */
 .input-group {
   margin-bottom: 18px;
 }
 
 .input-group label {
   font-size: 14px;
-  color: #555;
+  color: #4a5568;
   display: block;
   margin-bottom: 6px;
 }
 
 .input-group input {
-  width: 80%;
+  width: 100%;
   padding: 12px 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #cbd5e0;
   border-radius: 10px;
   font-size: 15px;
   transition: all 0.3s ease;
+  background: #f9fafc;
 }
 
 .input-group input:focus {
-  border-color: #6a11cb;
-  box-shadow: 0 0 6px rgba(106, 17, 203, 0.4);
+  border-color: #1a73e8;
+  box-shadow: 0 0 6px rgba(26, 115, 232, 0.4);
   outline: none;
 }
 
-
+/* Button */
 .login-container button {
   width: 100%;
   padding: 14px;
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  background: linear-gradient(135deg, #1a73e8, #0f4cbd);
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -74,15 +83,15 @@
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-
+/* Error Text */
 .error {
   margin-top: 12px;
-  color: #d9534f;
+  color: #e63946;
   font-size: 14px;
   text-align: center;
 }
 
-
+/* Responsive */
 @media (max-width: 600px) {
   .login-container {
     padding: 25px 20px;
@@ -99,130 +108,8 @@
   }
 }
 
-
+/* Fade In Animation */
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
-
-
-
-
-/*.login-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  margin-top: -20px;
-  margin-bottom: -50px;
-  background: #3F5EFB;
-  background: radial-gradient(circle,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
-}
-
-
-.login-container {
-  width: 100%;
-  max-width: 400px;
-  align-items: center;
-  padding: 35px 30px;
-  background: radial-gradient(circle,rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  animation: fadeIn 0.8s ease-in-out;
-}
-
-
-  .login-container h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    color: #333;
-    font-size: 26px;
-  }
-
-
-.input-group {
-  margin-bottom: 18px;
-}
-
-  .input-group label {
-    font-size: 14px;
-    color: #555;
-    display: block;
-    margin-bottom: 6px;
-  }
-
-  .input-group input {*/
-    /* FIX: Changed width from 80% to 100% to fill the container and reduce white space */
-    /*width: 100%;
-    padding: 12px 12px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 15px;
-    transition: all 0.3s ease;
-  }
-
-    .input-group input:focus {
-      border-color: #6a11cb;
-      box-shadow: 0 0 6px rgba(106, 17, 203, 0.4);
-      outline: none;
-    }
-
-
-.login-container button {
-  width: 100%;
-  padding: 14px;
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-  .login-container button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  }
-
-
-.error {
-  margin-top: 12px;
-  color: #d9534f;
-  font-size: 14px;
-  text-align: center;
-}
-
-
-@media (max-width: 600px) {
-    .login-container {
-    padding: 25px 20px;
-  }
-
-      .login-container h2 {
-      font-size: 22px;
-    }
-
-    .input-group input {
-    font-size: 14px;
-  }
-
-    .login-container button {
-    font-size: 15px;
-    padding: 12px;
-
-  }
-}
-
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}*/
