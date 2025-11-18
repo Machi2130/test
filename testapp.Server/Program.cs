@@ -14,7 +14,6 @@ using testapp.Server.Config;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -81,6 +80,8 @@ builder.Services.AddScoped<IAppLogRepo, AppLogRepo>();
 builder.Services.AddScoped<IAppLogService, AppLogService>();
 
 var app = builder.Build();
+
+app.UseDeveloperExceptionPage();  // Shows detailed error messages
 
 app.UseDefaultFiles();
 app.MapStaticAssets();
