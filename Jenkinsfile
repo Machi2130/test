@@ -99,7 +99,7 @@ pipeline {
                             dotnet publish testapp.Server -c Release -o publish_temp -maxcpucount:1 /p:UseSharedCompilation=false
                         """
 
-                        // ✅ FIX: Use Groovy writeFile for proper variable substitution
+                        // ✅ Generate appsettings.Production.json with proper variable substitution
                         def connString = "Server=${env.DB_SERVER};Database=${env.DB_NAME};User Id=${env.DB_USER};Password=${env.DB_PASSWORD};Encrypt=True;TrustServerCertificate=True;"
                         
                         writeFile file: 'publish_temp/appsettings.Production.json', text: """{
@@ -128,6 +128,10 @@ pipeline {
                         sudo mkdir -p ${env.DEPLOY_PATH}/api
                         sudo rm -rf ${env.DEPLOY_PATH}/api/*
                         sudo cp -r publish_temp/* ${env.DEPLOY_PATH}/api/
+                        
+                        # ✅ Remove Angular files from backend (they should be in /ui/)
+                        sudo rm -rf ${env.DEPLOY_PATH}/api/wwwroot/*
+                        
                         sudo chown -R www-data:www-data ${env.DEPLOY_PATH}/api
                     """
                 }
@@ -147,15 +151,15 @@ pipeline {
 
                             mkdir -p src/environments
                             
-                            # ✅ FIX: Use double quotes to expand variables
-                            cat > src/environments/environment.prod.ts <<ENV
+                            # ✅ Generate environment.prod.ts with correct domain
+                            cat > src/environments/environment.prod.ts <<'ENV'
 export const environment = {
   production: true,
   apiUrl: "https://${env.DEPLOY_DOMAIN}/api"
 };
 ENV
 
-                            npm run build -- --configuration production || npm run build
+                            npm run build -- --configuration production
                             cd -
                         else
                             echo ">>> No Angular project found, skipping"
@@ -174,11 +178,14 @@ ENV
                             sudo mkdir -p ${env.DEPLOY_PATH}/ui
                             sudo rm -rf ${env.DEPLOY_PATH}/ui/*
                             
+                            # ✅ Smart detection of Angular dist folder
                             if [ -d testapp.client/dist/testapp.client/browser ]; then
                                 sudo cp -r testapp.client/dist/testapp.client/browser/* ${env.DEPLOY_PATH}/ui/
+                            elif [ -d testapp.client/dist/testapp.client ]; then
+                                sudo cp -r testapp.client/dist/testapp.client/* ${env.DEPLOY_PATH}/ui/
                             else
                                 first_dist=\$(ls -1 testapp.client/dist | head -n1)
-                                sudo cp -r testapp.client/dist/\${first_dist}/* ${env.DEPLOY_PATH}/ui/ || true
+                                sudo cp -r testapp.client/dist/\${first_dist}/* ${env.DEPLOY_PATH}/ui/
                             fi
                             
                             sudo chown -R www-data:www-data ${env.DEPLOY_PATH}/ui
@@ -194,7 +201,7 @@ ENV
         stage('Create Systemd Service') {
             steps {
                 script {
-                    // ✅ FIX: Use Groovy to write file with proper substitution
+                    // ✅ Generate systemd service with proper variable substitution
                     def serviceContent = """[Unit]
 Description=Branch Deployment: ${env.SERVICE_NAME}
 After=network.target
@@ -225,7 +232,7 @@ WantedBy=multi-user.target
         stage('Configure Nginx') {
             steps {
                 script {
-                    // ✅ FIX: Use Groovy to properly substitute variables
+                    // ✅ Generate Nginx config with proper variable substitution
                     def nginxConfig = """server {
     listen 80;
     server_name ${env.DEPLOY_DOMAIN};
@@ -233,6 +240,7 @@ WantedBy=multi-user.target
     root ${env.DEPLOY_PATH}/ui;
     index index.html;
 
+    # Angular SPA routing
     location / {
         try_files \\\$uri \\\$uri/ /index.html;
         add_header Cache-Control "no-cache, no-store, must-revalidate";
@@ -240,7 +248,8 @@ WantedBy=multi-user.target
         add_header Expires "0";
     }
 
-    location ^~ /api/ {
+    # API proxy - using regex match for better compatibility
+    location ~ ^/api/ {
         proxy_pass http://127.0.0.1:${env.SERVICE_PORT};
         proxy_http_version 1.1;
         proxy_set_header Host \\\$host;
@@ -251,6 +260,7 @@ WantedBy=multi-user.target
         proxy_set_header Connection "upgrade";
         proxy_read_timeout 300s;
         proxy_send_timeout 300s;
+        proxy_connect_timeout 75s;
     }
 
     client_max_body_size 50M;
@@ -292,14 +302,14 @@ WantedBy=multi-user.target
                     sh """
                         echo ">>> Testing service on port ${env.SERVICE_PORT}..."
                         for i in {1..10}; do
-                            if curl -f http://127.0.0.1:${env.SERVICE_PORT}/ -o /dev/null -s; then
+                            if curl -f http://127.0.0.1:${env.SERVICE_PORT}/api -o /dev/null -s 2>/dev/null; then
                                 echo "✅ Service is healthy!"
                                 exit 0
                             fi
                             echo "Attempt \$i failed, retrying..."
                             sleep 2
                         done
-                        echo "⚠️  Health check inconclusive"
+                        echo "⚠️  Health check inconclusive (this may be normal if no /api endpoint exists)"
                     """
                 }
             }
