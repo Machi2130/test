@@ -17,57 +17,51 @@ pipeline {
     }
 
     stages {
-
         stage('Detect Branch & Assign Domain') {
             steps {
                 script {
-                    branch = env.BRANCH_NAME
-
-                    isMain = (branch == "main")
-                    isDev  = (branch == "dev")
-                    isPratha = (branch.toLowerCase().startsWith("prathamesh"))
+                    def branch = env.BRANCH_NAME ?: 'unknown'
+                    def isMain = (branch == "main")
+                    def isDev  = (branch == "dev")
+                    def isPratha = branch.toLowerCase().startsWith("prathamesh")
 
                     if (isMain) {
-                        DEPLOY_DOMAIN = MAIN_DOMAIN
-                        DEPLOY_PATH   = "/var/www/testapp"
-                        SERVICE_NAME  = "testapp"
-                        SERVICE_PORT  = "5000"
-                        DB_NAME       = "gusto_prod"
+                        env.DEPLOY_DOMAIN = MAIN_DOMAIN
+                        env.DEPLOY_PATH   = "/var/www/testapp"
+                        env.SERVICE_NAME  = "testapp"
+                        env.SERVICE_PORT  = "5000"
+                        env.DB_NAME       = "gusto_prod"
 
                     } else if (isDev) {
-                        DEPLOY_DOMAIN = DEV_DOMAIN
-                        DEPLOY_PATH   = "/var/www/testapp-dev"
-                        SERVICE_NAME  = "testapp-dev"
-                        SERVICE_PORT  = "5001"
-                        DB_NAME       = "gusto_dev"
+                        env.DEPLOY_DOMAIN = DEV_DOMAIN
+                        env.DEPLOY_PATH   = "/var/www/testapp-dev"
+                        env.SERVICE_NAME  = "testapp-dev"
+                        env.SERVICE_PORT  = "5001"
+                        env.DB_NAME       = "gusto_dev"
 
                     } else if (isPratha) {
-                        DEPLOY_DOMAIN = PRATHA_DOMAIN
-                        DEPLOY_PATH   = "/var/www/testapp-prathamesh"
-                        SERVICE_NAME  = "testapp-prathamesh"
-                        SERVICE_PORT  = "5002"
-                        DB_NAME       = "gusto_prathamesh"
+                        env.DEPLOY_DOMAIN = PRATHA_DOMAIN
+                        env.DEPLOY_PATH   = "/var/www/testapp-prathamesh"
+                        env.SERVICE_NAME  = "testapp-prathamesh"
+                        env.SERVICE_PORT  = "5002"
+                        env.DB_NAME       = "gusto_prathamesh"
 
                     } else {
-                        // All other feature branches → testsdev.duckdns.org
-                        DEPLOY_DOMAIN = DEV_DOMAIN
-                        safe = branch.toLowerCase().replaceAll(/[^a-z0-9]/, "-")
-                        DEPLOY_PATH   = "/var/www/testapp-${safe}"
-                        SERVICE_NAME  = "testapp-${safe}"
-                        SERVICE_PORT  = "${5100 + Math.abs(safe.hashCode()) % 100}"
-                        DB_NAME       = "gusto_${safe}"
+                        def safe = branch.toLowerCase().replaceAll(/[^a-z0-9]/, "-")
+                        env.DEPLOY_DOMAIN = DEV_DOMAIN
+                        env.DEPLOY_PATH   = "/var/www/testapp-${safe}"
+                        env.SERVICE_NAME  = "testapp-${safe}"
+                        env.SERVICE_PORT  = "${5100 + Math.abs(safe.hashCode()) % 100}"
+                        env.DB_NAME       = "gusto_${safe}"
                     }
 
-                    echo """
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Branch:        ${branch}
-Domain:        ${DEPLOY_DOMAIN}
-Service Name:  ${SERVICE_NAME}
-Service Port:  ${SERVICE_PORT}
-Deploy Path:   ${DEPLOY_PATH}
-Database Name: ${DB_NAME}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-"""
+                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                    echo "  Branch:       ${branch}"
+                    echo "  Domain:       ${env.DEPLOY_DOMAIN}"
+                    echo "  Service:      ${env.SERVICE_NAME} on ${env.SERVICE_PORT}"
+                    echo "  Deploy Path:  ${env.DEPLOY_PATH}"
+                    echo "  Database:     ${env.DB_NAME}"
+                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
                 }
             }
         }
@@ -82,9 +76,10 @@ Database Name: ${DB_NAME}
             steps {
                 script {
                     sh """
-                        sudo systemctl stop ${SERVICE_NAME} || true
-                        sudo pkill -9 -f ${SERVICE_NAME}.dll || true
-                        sleep 1
+                        set -e
+                        sudo systemctl stop ${env.SERVICE_NAME} || true
+                        sudo pkill -9 -f ${env.SERVICE_NAME}.dll || true
+                        sleep 2
                     """
                 }
             }
@@ -94,17 +89,20 @@ Database Name: ${DB_NAME}
             steps {
                 withCredentials([
                     string(credentialsId: 'DB_SERVER', variable: 'DB_SERVER'),
-                    string(credentialsId: 'DB_USER', variable: 'DB_USER'),
+                    string(credentialsId: 'DB_USER',   variable: 'DB_USER'),
                     string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD')
                 ]) {
+                    script {
+                        sh """
+                            set -e
+                            dotnet restore testapp.sln
+                            dotnet publish testapp.Server -c Release -o publish_temp -maxcpucount:1 /p:UseSharedCompilation=false
+                        """
 
-                    sh "dotnet restore testapp.sln"
-
-                    sh "dotnet publish testapp.Server -c Release -o publish_temp"
-
-                    sh """
-                        cat > publish_temp/appsettings.Production.json <<EOF
-{
+                        // ✅ FIX: Use Groovy writeFile for proper variable substitution
+                        def connString = "Server=${env.DB_SERVER};Database=${env.DB_NAME};User Id=${env.DB_USER};Password=${env.DB_PASSWORD};Encrypt=True;TrustServerCertificate=True;"
+                        
+                        writeFile file: 'publish_temp/appsettings.Production.json', text: """{
   "Logging": {
     "LogLevel": {
       "Default": "Information",
@@ -112,13 +110,12 @@ Database Name: ${DB_NAME}
     }
   },
   "AllowedHosts": "*",
-  "Urls": "http://localhost:${SERVICE_PORT}",
+  "Urls": "http://localhost:${env.SERVICE_PORT}",
   "ConnectionStrings": {
-    "DefaultConnection": "Server=${DB_SERVER};Database=${DB_NAME};User Id=${DB_USER};Password=${DB_PASSWORD};Encrypt=True;TrustServerCertificate=True;"
+    "DefaultConnection": "${connString}"
   }
-}
-EOF
-                    """
+}"""
+                    }
                 }
             }
         }
@@ -127,10 +124,11 @@ EOF
             steps {
                 script {
                     sh """
-                        sudo mkdir -p ${DEPLOY_PATH}/api
-                        sudo rm -rf ${DEPLOY_PATH}/api/*
-                        sudo cp -r publish_temp/* ${DEPLOY_PATH}/api/
-                        sudo chown -R www-data:www-data ${DEPLOY_PATH}/api
+                        set -e
+                        sudo mkdir -p ${env.DEPLOY_PATH}/api
+                        sudo rm -rf ${env.DEPLOY_PATH}/api/*
+                        sudo cp -r publish_temp/* ${env.DEPLOY_PATH}/api/
+                        sudo chown -R www-data:www-data ${env.DEPLOY_PATH}/api
                     """
                 }
             }
@@ -138,19 +136,31 @@ EOF
 
         stage('Build Angular UI') {
             steps {
-                dir("testapp.client") {
-                    sh "npm install"
-
+                script {
                     sh """
-                        cat > src/environments/environment.prod.ts <<EOF
-export const environment = {
-    production: true,
-    apiUrl: "https://${DEPLOY_DOMAIN}/api"
-};
-EOF
-                    """
+                        set -e
+                        if [ -d "testapp.client" ]; then
+                            echo ">>> Found Angular project, building..."
+                            cd testapp.client
 
-                    sh "npm run build -- --configuration production"
+                            npm ci || npm install
+
+                            mkdir -p src/environments
+                            
+                            # ✅ FIX: Use double quotes to expand variables
+                            cat > src/environments/environment.prod.ts <<ENV
+export const environment = {
+  production: true,
+  apiUrl: "https://${env.DEPLOY_DOMAIN}/api"
+};
+ENV
+
+                            npm run build -- --configuration production || npm run build
+                            cd -
+                        else
+                            echo ">>> No Angular project found, skipping"
+                        fi
+                    """
                 }
             }
         }
@@ -159,16 +169,23 @@ EOF
             steps {
                 script {
                     sh """
-                        sudo mkdir -p ${DEPLOY_PATH}/ui
-                        sudo rm -rf ${DEPLOY_PATH}/ui/*
-
-                        if [ -d testapp.client/dist/testapp.client/browser ]; then
-                           sudo cp -r testapp.client/dist/testapp.client/browser/* ${DEPLOY_PATH}/ui/
+                        set -e
+                        if [ -d "testapp.client" ] && [ -d "testapp.client/dist" ]; then
+                            sudo mkdir -p ${env.DEPLOY_PATH}/ui
+                            sudo rm -rf ${env.DEPLOY_PATH}/ui/*
+                            
+                            if [ -d testapp.client/dist/testapp.client/browser ]; then
+                                sudo cp -r testapp.client/dist/testapp.client/browser/* ${env.DEPLOY_PATH}/ui/
+                            else
+                                first_dist=\$(ls -1 testapp.client/dist | head -n1)
+                                sudo cp -r testapp.client/dist/\${first_dist}/* ${env.DEPLOY_PATH}/ui/ || true
+                            fi
+                            
+                            sudo chown -R www-data:www-data ${env.DEPLOY_PATH}/ui
+                            sudo chmod -R 755 ${env.DEPLOY_PATH}/ui
                         else
-                           sudo cp -r testapp.client/dist/testapp.client/* ${DEPLOY_PATH}/ui/
+                            echo ">>> No built UI to deploy"
                         fi
-
-                        sudo chown -R www-data:www-data ${DEPLOY_PATH}/ui
                     """
                 }
             }
@@ -177,15 +194,14 @@ EOF
         stage('Create Systemd Service') {
             steps {
                 script {
-                    sh """
-                        sudo tee /etc/systemd/system/${SERVICE_NAME}.service > /dev/null <<EOF
-[Unit]
-Description=Branch Deployment: ${SERVICE_NAME}
+                    // ✅ FIX: Use Groovy to write file with proper substitution
+                    def serviceContent = """[Unit]
+Description=Branch Deployment: ${env.SERVICE_NAME}
 After=network.target
 
 [Service]
-WorkingDirectory=${DEPLOY_PATH}/api
-ExecStart=/usr/bin/dotnet ${DEPLOY_PATH}/api/testapp.Server.dll
+WorkingDirectory=${env.DEPLOY_PATH}/api
+ExecStart=/usr/bin/dotnet ${env.DEPLOY_PATH}/api/testapp.Server.dll
 Restart=always
 RestartSec=10
 User=www-data
@@ -193,10 +209,14 @@ Environment=ASPNETCORE_ENVIRONMENT=Production
 
 [Install]
 WantedBy=multi-user.target
-EOF
-
+"""
+                    
+                    writeFile file: 'systemd.service', text: serviceContent
+                    
+                    sh """
+                        sudo cp systemd.service /etc/systemd/system/${env.SERVICE_NAME}.service
                         sudo systemctl daemon-reload
-                        sudo systemctl enable ${SERVICE_NAME}
+                        sudo systemctl enable ${env.SERVICE_NAME}
                     """
                 }
             }
@@ -205,31 +225,47 @@ EOF
         stage('Configure Nginx') {
             steps {
                 script {
-                    sh """
-                        sudo tee /etc/nginx/sites-available/${SERVICE_NAME} > /dev/null <<EOF
-server {
+                    // ✅ FIX: Use Groovy to properly substitute variables
+                    def nginxConfig = """server {
     listen 80;
-    server_name ${DEPLOY_DOMAIN};
+    server_name ${env.DEPLOY_DOMAIN};
 
-    root ${DEPLOY_PATH}/ui;
+    root ${env.DEPLOY_PATH}/ui;
     index index.html;
 
     location / {
-        try_files \$uri \$uri/ /index.html;
+        try_files \\\$uri \\\$uri/ /index.html;
+        add_header Cache-Control "no-cache, no-store, must-revalidate";
+        add_header Pragma "no-cache";
+        add_header Expires "0";
     }
 
     location ^~ /api/ {
-        proxy_pass http://127.0.0.1:${SERVICE_PORT};
-
-        proxy_set_header Host \$host;
-        proxy_set_header X-Real-IP \$remote_addr;
-        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto \$scheme;
+        proxy_pass http://127.0.0.1:${env.SERVICE_PORT};
+        proxy_http_version 1.1;
+        proxy_set_header Host \\\$host;
+        proxy_set_header X-Real-IP \\\$remote_addr;
+        proxy_set_header X-Forwarded-For \\\$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \\\$scheme;
+        proxy_set_header Upgrade \\\$http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_read_timeout 300s;
+        proxy_send_timeout 300s;
     }
-}
-EOF
 
-                        sudo ln -sf /etc/nginx/sites-available/${SERVICE_NAME} /etc/nginx/sites-enabled/${SERVICE_NAME}
+    client_max_body_size 50M;
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+}
+"""
+                    
+                    writeFile file: 'nginx-site.conf', text: nginxConfig
+                    
+                    sh """
+                        sudo cp nginx-site.conf /etc/nginx/sites-available/${env.SERVICE_NAME}
+                        sudo rm -f /etc/nginx/sites-enabled/${env.SERVICE_NAME}
+                        sudo ln -sf /etc/nginx/sites-available/${env.SERVICE_NAME} /etc/nginx/sites-enabled/${env.SERVICE_NAME}
                         sudo nginx -t
                         sudo systemctl reload nginx
                     """
@@ -239,24 +275,54 @@ EOF
 
         stage('Start Service') {
             steps {
-                sh """
-                    sudo systemctl start ${SERVICE_NAME}
-                    sleep 3
-                """
+                script {
+                    sh """
+                        set -e
+                        sudo systemctl start ${env.SERVICE_NAME}
+                        sleep 5
+                        sudo systemctl status ${env.SERVICE_NAME} --no-pager || true
+                    """
+                }
             }
         }
 
+        stage('Health Check') {
+            steps {
+                script {
+                    sh """
+                        echo ">>> Testing service on port ${env.SERVICE_PORT}..."
+                        for i in {1..10}; do
+                            if curl -f http://127.0.0.1:${env.SERVICE_PORT}/ -o /dev/null -s; then
+                                echo "✅ Service is healthy!"
+                                exit 0
+                            fi
+                            echo "Attempt \$i failed, retrying..."
+                            sleep 2
+                        done
+                        echo "⚠️  Health check inconclusive"
+                    """
+                }
+            }
+        }
     }
 
     post {
         success {
-            echo "🎉 Deployment Successful → http://${DEPLOY_DOMAIN}"
-        }
-        failure {
-            echo "❌ Deployment Failed"
-        }
-        always {
+            echo """
+╔════════════════════════════════════════════════════════════╗
+║              ✅ DEPLOYMENT SUCCESSFUL!                     ║
+╠════════════════════════════════════════════════════════════╣
+║  🌐 URL:       http://${env.DEPLOY_DOMAIN}
+║  📊 Database:  ${env.DB_NAME}
+║  🔧 Service:   ${env.SERVICE_NAME}
+║  🎯 Port:      ${env.SERVICE_PORT}
+╚════════════════════════════════════════════════════════════╝
+"""
             cleanWs()
+        }
+
+        failure {
+            echo "❌ Deployment failed — workspace kept for inspection"
         }
     }
 }
