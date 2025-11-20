@@ -14,16 +14,36 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
+        stage('Detect Branch') {
             steps {
-                git branch: 'main', url: 'https://github.com/Machi2130/test'
+                script {
+                    branch = env.BRANCH_NAME
+                    isMain = (branch == "main")
+                    isDev  = (branch == "dev")
+                    isFeature = (!isMain && !isDev)
+
+                    echo "---------------------------------------------"
+                    echo "  Running Pipeline on Branch: ${branch}"
+                    echo "  Is MAIN?     ${isMain}"
+                    echo "  Is DEV?      ${isDev}"
+                    echo "  Is FEATURE?  ${isFeature}"
+                    echo "---------------------------------------------"
+                }
             }
         }
 
-        stage('Stop Service') {
+        stage('Checkout Code') {
+            steps {
+                echo ">>> Checking out branch: ${env.BRANCH_NAME}"
+                checkout scm
+            }
+        }
+
+        stage('Stop Service (dev/main only)') {
+            when { expression { isDev || isMain } }
             steps {
                 script {
-                    echo ">>> Stopping testapp service"
+                    echo ">>> Stopping testapp service on server"
                     sh '''
                         sudo systemctl stop testapp || true
                         sleep 2
@@ -35,18 +55,19 @@ pipeline {
             }
         }
 
-        stage('Build Backend') {
+        stage('Build Backend (.NET)') {
             steps {
                 withCredentials([
-                    string(credentialsId: 'DB_SERVER', variable: 'DB_SERVER'),
-                    string(credentialsId: 'DB_USER', variable: 'DB_USER'),
+                    string(credentialsId: 'DB_SERVER',   variable: 'DB_SERVER'),
+                    string(credentialsId: 'DB_USER',     variable: 'DB_USER'),
                     string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD')
                 ]) {
                     script {
+
                         echo ">>> Restoring .NET packages"
                         sh "dotnet restore testapp.sln"
 
-                        echo ">>> Publishing .NET backend to TEMP folder"
+                        echo '>>> Publishing .NET backend'
                         sh "dotnet publish testapp.Server -c Release -o publish_temp -maxcpucount:1 /p:UseSharedCompilation=false"
 
                         echo ">>> Writing Production config"
@@ -72,33 +93,45 @@ EOF
                             CONNECTION_STRING="Server=${DB_SERVER};Database=gusto;User Id=${DB_USER};Password=${DB_PASSWORD};TrustServerCertificate=True;Encrypt=True;"
                             sed -i "s|PLACEHOLDER_CONNECTION_STRING|${CONNECTION_STRING}|g" publish_temp/appsettings.Production.json
                         '''
-
-                        echo ">>> Deploying backend"
-                        sh '''
-                            sudo rm -rf /var/www/testapp/api/*
-                            sudo cp -r publish_temp/* /var/www/testapp/api/
-                            sudo chown -R www-data:www-data /var/www/testapp/api
-                            echo '✔ Backend deployed'
-                        '''
                     }
                 }
             }
         }
 
-        stage('Build Angular') {
+        stage('Deploy Backend (dev/main only)') {
+            when { expression { isDev || isMain } }
+            steps {
+                script {
+                    echo ">>> Deploying backend"
+                    sh '''
+                        sudo rm -rf /var/www/testapp/api/*
+                        sudo cp -r publish_temp/* /var/www/testapp/api/
+                        sudo chown -R www-data:www-data /var/www/testapp/api
+                        echo '✔ Backend deployed'
+                    '''
+                }
+            }
+        }
+
+        stage('Build Angular UI') {
             steps {
                 dir('testapp.client') {
                     script {
                         echo ">>> Installing Angular dependencies"
                         sh "npm install"
 
-                        echo ">>> Building Angular"
+                        echo ">>> Building Angular (prod)"
                         sh "npm run build -- --configuration production"
                     }
                 }
+            }
+        }
 
+        stage('Deploy Angular (dev/main only)') {
+            when { expression { isDev || isMain } }
+            steps {
                 script {
-                    echo ">>> Deploying Angular build"
+                    echo ">>> Deploying Angular UI"
                     sh '''
                         sudo rm -rf /var/www/testapp/ui/*
 
@@ -116,15 +149,16 @@ EOF
             }
         }
 
-        stage('Database Migration') {
+        stage('Database Migration (dev/main only)') {
+            when { expression { isDev || isMain } }
             steps {
                 withCredentials([
-                    string(credentialsId: 'DB_SERVER', variable: 'DB_SERVER'),
-                    string(credentialsId: 'DB_USER', variable: 'DB_USER'),
+                    string(credentialsId: 'DB_SERVER',   variable: 'DB_SERVER'),
+                    string(credentialsId: 'DB_USER',     variable: 'DB_USER'),
                     string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD')
                 ]) {
                     script {
-                        echo ">>> Running EF migrations"
+                        echo ">>> Running migrations"
                         sh '''
                             cd /var/www/testapp/api
 
@@ -141,7 +175,8 @@ EOF
             }
         }
 
-        stage('Start Service') {
+        stage('Start Service (dev/main only)') {
+            when { expression { isDev || isMain } }
             steps {
                 script {
                     echo ">>> Starting testapp service"
@@ -160,12 +195,10 @@ EOF
         success {
             echo "🎉 Deployment successful!"
         }
-
         failure {
-            echo "❌ Deployment failed"
+            echo "❌ Deployment failed — trying to start service again"
             sh "sudo systemctl start testapp || true"
         }
-
         always {
             cleanWs()
         }
