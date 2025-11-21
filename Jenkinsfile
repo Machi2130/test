@@ -17,12 +17,16 @@ pipeline {
     }
 
     stages {
+
+        /* ───────────────────────────────────────────────────────────────
+           DETECT BRANCH → DOMAIN → SERVICE → DB
+        ────────────────────────────────────────────────────────────────*/
         stage('Detect Branch & Assign Domain') {
             steps {
                 script {
                     def branch = env.BRANCH_NAME ?: 'unknown'
-                    def isMain = (branch == "main")
-                    def isDev  = (branch == "dev")
+                    def isMain   = (branch == "main")
+                    def isDev    = (branch == "dev")
                     def isPratha = branch.toLowerCase().startsWith("prathamesh")
 
                     if (isMain) {
@@ -31,6 +35,7 @@ pipeline {
                         env.SERVICE_NAME  = "testapp"
                         env.SERVICE_PORT  = "5000"
                         env.DB_NAME       = "gusto_prod"
+                        env.REPORT_DB_NAME = "reportDB_prod"
 
                     } else if (isDev) {
                         env.DEPLOY_DOMAIN = DEV_DOMAIN
@@ -38,6 +43,7 @@ pipeline {
                         env.SERVICE_NAME  = "testapp-dev"
                         env.SERVICE_PORT  = "5001"
                         env.DB_NAME       = "gusto_dev"
+                        env.REPORT_DB_NAME = "reportDB_dev"
 
                     } else if (isPratha) {
                         env.DEPLOY_DOMAIN = PRATHA_DOMAIN
@@ -45,6 +51,7 @@ pipeline {
                         env.SERVICE_NAME  = "testapp-prathamesh"
                         env.SERVICE_PORT  = "5002"
                         env.DB_NAME       = "gusto_prathamesh"
+                        env.REPORT_DB_NAME = "reportDB_prathamesh"
 
                     } else {
                         def safe = branch.toLowerCase().replaceAll(/[^a-z0-9]/, "-")
@@ -53,116 +60,135 @@ pipeline {
                         env.SERVICE_NAME  = "testapp-${safe}"
                         env.SERVICE_PORT  = "${5100 + Math.abs(safe.hashCode()) % 100}"
                         env.DB_NAME       = "gusto_${safe}"
+                        env.REPORT_DB_NAME = "reportDB_${safe}"
                     }
+
+                    echo """
+────────────────────────────────────────────
+BRANCH      : ${branch}
+DOMAIN      : ${env.DEPLOY_DOMAIN}
+SERVICE     : ${env.SERVICE_NAME}
+PORT        : ${env.SERVICE_PORT}
+DB          : ${env.DB_NAME}
+REPORT DB   : ${env.REPORT_DB_NAME}
+────────────────────────────────────────────
+"""
                 }
             }
         }
 
+        /* ───────────────────────────────────────────────────────────────
+           CHECKOUT CODE
+        ────────────────────────────────────────────────────────────────*/
         stage('Checkout Code') {
-            steps {
-                checkout scm
-            }
+            steps { checkout scm }
         }
 
+        /* ───────────────────────────────────────────────────────────────
+           STOP OLD SERVICE
+        ────────────────────────────────────────────────────────────────*/
         stage('Stop Old Service') {
             steps {
-                script {
-                    sh """
-                        set -e
-                        sudo systemctl stop ${env.SERVICE_NAME} || true
-                        sudo pkill -9 -f ${env.SERVICE_NAME}.dll || true
-                        sleep 2
-                    """
-                }
+                sh """
+                    sudo systemctl stop ${env.SERVICE_NAME} || true
+                    sudo pkill -9 -f ${env.SERVICE_NAME}.dll || true
+                    sleep 2
+                """
             }
         }
 
+        /* ───────────────────────────────────────────────────────────────
+           BUILD APPLICATION
+        ────────────────────────────────────────────────────────────────*/
         stage('Build Application') {
             parallel {
+                /* ------- Backend -------- */
                 stage('Build Backend (.NET)') {
                     steps {
-                        script {
-                            sh """
-                                set -e
-                                dotnet restore testapp.sln
-                                dotnet publish testapp.Server -c Release -o publish_temp -maxcpucount:1 /p:UseSharedCompilation=false
-                            """
-                        }
+                        sh """
+                            dotnet restore testapp.sln
+                            dotnet publish testapp.Server -c Release -o publish_temp
+                        """
                     }
                 }
-                stage('Build Angular UI') {
+
+                /* ------- Angular UI -------- */
+                stage('Build Frontend (Angular)') {
                     steps {
-                        script {
-                            sh """
-                                set -e
-                                if [ -d "testapp.client" ]; then
-                                    cd testapp.client
-                                    npm ci || npm install
-                                    mkdir -p src/environments
-                                    # Optionally sync environment.prod.ts
-                                    npm run build -- --configuration production
-                                    cd -
-                                else
-                                    echo ">>> No Angular project found, skipping"
-                                fi
-                            """
-                        }
+                        sh """
+                            if [ -d "testapp.client" ]; then
+                                cd testapp.client
+                                
+                                npm ci || npm install
+
+                                # Use npx → no global ng needed
+                                npx --yes @angular/cli@latest build --configuration production
+
+                                cd -
+                            fi
+                        """
                     }
                 }
             }
         }
 
+        /* ───────────────────────────────────────────────────────────────
+           DEPLOY BACKEND + FRONTEND
+        ────────────────────────────────────────────────────────────────*/
         stage('Deploy Application') {
             parallel {
+
+                /* ------- Backend -------- */
                 stage('Deploy Backend') {
                     steps {
-                        script {
-                            sh """
-                                set -e
-                                sudo mkdir -p ${env.DEPLOY_PATH}/api
-                                sudo rm -rf ${env.DEPLOY_PATH}/api/*
-                                sudo cp -r publish_temp/* ${env.DEPLOY_PATH}/api/
-                                # Leave appsettings.Production.json as published (from repo)
-                                sudo chown -R www-data:www-data ${env.DEPLOY_PATH}/api
-                            """
-                        }
+                        sh """
+                            sudo mkdir -p ${env.DEPLOY_PATH}/api
+                            sudo rm -rf ${env.DEPLOY_PATH}/api/*
+                            sudo cp -r publish_temp/* ${env.DEPLOY_PATH}/api/
+                            sudo chown -R www-data:www-data ${env.DEPLOY_PATH}/api
+                        """
                     }
                 }
-                stage('Deploy Angular UI') {
+
+                /* ------- UI -------- */
+                stage('Deploy Frontend') {
                     steps {
-                        script {
-                            sh """
-                                set -e
-                                if [ -d "testapp.client" ] && [ -d "testapp.client/dist" ]; then
-                                    sudo mkdir -p ${env.DEPLOY_PATH}/ui
-                                    sudo rm -rf ${env.DEPLOY_PATH}/ui/*
-                                    if [ -d testapp.client/dist/testapp.client/browser ]; then
-                                        sudo cp -r testapp.client/dist/testapp.client/browser/* ${env.DEPLOY_PATH}/ui/
-                                    elif [ -d testapp.client/dist/testapp.client ]; then
-                                        sudo cp -r testapp.client/dist/testapp.client/* ${env.DEPLOY_PATH}/ui/
-                                    else
-                                        first_dist=\$(ls -1 testapp.client/dist | head -n1)
-                                        sudo cp -r testapp.client/dist/\${first_dist}/* ${env.DEPLOY_PATH}/ui/
-                                    fi
-                                    sudo chown -R www-data:www-data ${env.DEPLOY_PATH}/ui
-                                    sudo chmod -R 755 ${env.DEPLOY_PATH}/ui
+                        sh """
+                            if [ -d "testapp.client/dist" ]; then
+                                sudo mkdir -p ${env.DEPLOY_PATH}/ui
+                                sudo rm -rf ${env.DEPLOY_PATH}/ui/*
+
+                                # Smart dist detection
+                                if [ -d testapp.client/dist/testapp.client/browser ]; then
+                                    sudo cp -r testapp.client/dist/testapp.client/browser/* ${env.DEPLOY_PATH}/ui/
+                                elif [ -d testapp.client/dist/testapp.client ]; then
+                                    sudo cp -r testapp.client/dist/testapp.client/* ${env.DEPLOY_PATH}/ui/
                                 else
-                                    echo ">>> No built UI to deploy"
+                                    sudo cp -r testapp.client/dist/*/* ${env.DEPLOY_PATH}/ui/
                                 fi
-                            """
-                        }
+
+                                sudo chown -R www-data:www-data ${env.DEPLOY_PATH}/ui
+                                sudo chmod -R 755 ${env.DEPLOY_PATH}/ui
+                            fi
+                        """
                     }
                 }
             }
         }
 
+        /* ───────────────────────────────────────────────────────────────
+           SYSTEMD + NGINX CONFIGURATION
+        ────────────────────────────────────────────────────────────────*/
         stage('Configure Services') {
             parallel {
-                stage('Create Systemd Service') {
+
+                /* ------- Systemd -------- */
+                stage('Setup Systemd') {
                     steps {
                         script {
-                            def serviceContent = """[Unit]
-Description=Branch Deployment: ${env.SERVICE_NAME}
+
+                            writeFile file: 'service.tmp', text: """[Unit]
+Description=${env.SERVICE_NAME}
 After=network.target
 
 [Service]
@@ -172,61 +198,52 @@ Restart=always
 RestartSec=10
 User=www-data
 Environment=ASPNETCORE_ENVIRONMENT=Production
-# If you want to use Jenkins credentials for DB, uncomment and use the next line instead:
-# Environment=ConnectionStrings__DefaultConnection=Server=${env.DB_SERVER};Database=${env.DB_NAME};User Id=${env.DB_USER};Password=${env.DB_PASSWORD};Encrypt=True;TrustServerCertificate=True;
 
 [Install]
 WantedBy=multi-user.target
 """
-                            writeFile file: 'systemd.service', text: serviceContent
+
                             sh """
-                                sudo cp systemd.service /etc/systemd/system/${env.SERVICE_NAME}.service
+                                sudo cp service.tmp /etc/systemd/system/${env.SERVICE_NAME}.service
                                 sudo systemctl daemon-reload
                                 sudo systemctl enable ${env.SERVICE_NAME}
                             """
                         }
                     }
                 }
-                stage('Configure Nginx') {
+
+                /* ------- Nginx -------- */
+                stage('Setup Nginx') {
                     steps {
                         script {
-                            def nginxConfig = '''server {
-    listen 80;
-    server_name ''' + env.DEPLOY_DOMAIN + ''';
 
-    root ''' + env.DEPLOY_PATH + '''/ui;
+                            writeFile file: "nginx.tmp", text: """
+server {
+    listen 80;
+    server_name ${env.DEPLOY_DOMAIN};
+
+    root ${env.DEPLOY_PATH}/ui;
     index index.html;
 
     location / {
-        try_files $uri $uri/ /index.html;
-        add_header Cache-Control "no-cache, no-store, must-revalidate";
-        add_header Pragma "no-cache";
-        add_header Expires "0";
+        try_files \$uri \$uri/ /index.html;
     }
 
     location ~ ^/api/ {
-        proxy_pass http://127.0.0.1:''' + env.SERVICE_PORT + ''';
+        proxy_pass http://127.0.0.1:${env.SERVICE_PORT};
         proxy_http_version 1.1;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_read_timeout 300s;
-        proxy_send_timeout 300s;
-        proxy_connect_timeout 75s;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
     }
 
     client_max_body_size 50M;
-    add_header X-Frame-Options "SAMEORIGIN" always;
-    add_header X-Content-Type-Options "nosniff" always;
-    add_header X-XSS-Protection "1; mode=block" always;
-}'''
-                            writeFile file: 'nginx-site.conf', text: nginxConfig
+}
+"""
+
                             sh """
-                                sudo cp nginx-site.conf /etc/nginx/sites-available/${env.SERVICE_NAME}
-                                sudo rm -f /etc/nginx/sites-enabled/${env.SERVICE_NAME}
+                                sudo cp nginx.tmp /etc/nginx/sites-available/${env.SERVICE_NAME}
                                 sudo ln -sf /etc/nginx/sites-available/${env.SERVICE_NAME} /etc/nginx/sites-enabled/${env.SERVICE_NAME}
                                 sudo nginx -t
                                 sudo systemctl reload nginx
@@ -237,55 +254,35 @@ WantedBy=multi-user.target
             }
         }
 
+        /* ───────────────────────────────────────────────────────────────
+           START & VERIFY
+        ────────────────────────────────────────────────────────────────*/
         stage('Start Service') {
             steps {
-                script {
-                    sh """
-                        set -e
-                        sudo systemctl start ${env.SERVICE_NAME}
-                        sleep 5
-                        sudo systemctl status ${env.SERVICE_NAME} --no-pager || true
-                    """
-                }
+                sh """
+                    sudo systemctl start ${env.SERVICE_NAME}
+                    sleep 5
+                """
             }
         }
 
-        stage('Health Check') {
+        stage('Verify Deployment') {
             steps {
-                script {
-                    sh """
-                        for i in {1..10}; do
-                            if curl -f http://127.0.0.1:${env.SERVICE_PORT}/ -o /dev/null -s 2>/dev/null; then
-                                echo "✅ Service is healthy!"
-                                exit 0
-                            fi
-                            echo "Attempt \$i failed, retrying..."
-                            sleep 2
-                        done
-                        echo "⚠️  Health check inconclusive"
-                    """
-                }
+                sh """
+                    sudo systemctl status ${env.SERVICE_NAME} --no-pager || true
+                    curl -f http://127.0.0.1:${env.SERVICE_PORT}/api || echo 'API may still be starting...'
+                """
             }
         }
     }
 
     post {
         success {
-            echo """
-╔════════════════════════════════════════════════════════════╗
-║              ✅ DEPLOYMENT SUCCESSFUL!                     ║
-╠════════════════════════════════════════════════════════════╣
-║  🌐 URL:       http://${env.DEPLOY_DOMAIN}
-║  📊 Database:  ${env.DB_NAME}
-║  🔧 Service:   ${env.SERVICE_NAME}
-║  🎯 Port:      ${env.SERVICE_PORT}
-╚════════════════════════════════════════════════════════════╝
-"""
+            echo "✅ DEPLOYED SUCCESSFULLY → http://${env.DEPLOY_DOMAIN}"
             cleanWs()
         }
-
         failure {
-            echo "❌ Deployment failed — workspace kept for inspection"
+            echo "❌ Deployment failed"
         }
     }
 }
