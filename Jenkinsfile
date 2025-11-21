@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'node18'
+        nodejs 'node18'   // Angular 19 supports Node 18
     }
 
     environment {
@@ -55,12 +55,18 @@ pipeline {
                         env.SERVICE_PORT  = "${5100 + Math.abs(safe.hashCode()) % 100}"
                         env.DB_NAME       = "gusto_${safe}"
                     }
+
+                    echo "Branch: ${branch}"
+                    echo "Domain: ${env.DEPLOY_DOMAIN}"
+                    echo "Deploy Path: ${env.DEPLOY_PATH}"
                 }
             }
         }
 
         stage('Checkout Code') {
-            steps { checkout scm }
+            steps {
+                checkout scm
+            }
         }
 
         stage('Stop Old Service') {
@@ -80,28 +86,20 @@ pipeline {
                     string(credentialsId: 'DB_USER',   variable: 'DB_USER'),
                     string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD')
                 ]) {
-                    script {
-                        sh """
-                            dotnet restore testapp.sln
-                            dotnet publish testapp.Server -c Release -o publish_temp
-                        """
 
-                        def connString = "Server=${env.DB_SERVER};Database=${env.DB_NAME};User Id=${env.DB_USER};Password=${env.DB_PASSWORD};Encrypt=True;TrustServerCertificate=True;"
+                    sh """
+                        dotnet restore testapp.sln
+                        dotnet publish testapp.Server -c Release -o publish_temp
+                    """
 
-                        writeFile file: 'publish_temp/appsettings.Production.json', text: """{
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
+                    def connString = "Server=${env.DB_SERVER};Database=${env.DB_NAME};User Id=${env.DB_USER};Password=${env.DB_PASSWORD};Encrypt=True;TrustServerCertificate=True;"
+
+                    writeFile file: 'publish_temp/appsettings.Production.json', text: """{
+  "Logging": { "LogLevel": { "Default": "Information", "Microsoft.AspNetCore": "Warning" }},
   "AllowedHosts": "*",
   "Urls": "http://localhost:${env.SERVICE_PORT}",
-  "ConnectionStrings": {
-    "DefaultConnection": "${connString}"
-  }
+  "ConnectionStrings": { "DefaultConnection": "${connString}" }
 }"""
-                    }
                 }
             }
         }
@@ -117,18 +115,24 @@ pipeline {
             }
         }
 
-        stage('Build Angular UI') {
+        stage('Build Angular UI (Force Angular 19)') {
             steps {
                 sh """
                     if [ -d "testapp.client" ]; then
                         cd testapp.client
 
+                        echo ">>> Removing old node_modules"
                         rm -rf node_modules package-lock.json
-                        npm install
 
-                        # FIX: Ensure environments folder ALWAYS exists
+                        echo ">>> Installing Angular 19"
+                        npm install -g @angular/cli@19 || true
+                        npm install @angular/cli@19 --save-dev --legacy-peer-deps
+
+                        echo ">>> Installing dependencies"
+                        npm install --legacy-peer-deps
+
+                        echo ">>> Writing environment.prod.ts"
                         mkdir -p src/environments
-
                         cat > src/environments/environment.prod.ts <<EOF
 export const environment = {
   production: true,
@@ -136,8 +140,12 @@ export const environment = {
 };
 EOF
 
-                        npx --yes @angular/cli@latest build --configuration production
+                        echo ">>> Building Angular"
+                        npx ng build --configuration production
+
                         cd -
+                    else
+                        echo "No Angular folder found"
                     fi
                 """
             }
@@ -149,10 +157,8 @@ EOF
                     if [ -d "testapp.client/dist" ]; then
                         sudo mkdir -p ${env.DEPLOY_PATH}/ui
                         sudo rm -rf ${env.DEPLOY_PATH}/ui/*
-
-                        DIST_PATH=\$(find testapp.client/dist -type d -name browser | head -1)
-                        sudo cp -r \$DIST_PATH/* ${env.DEPLOY_PATH}/ui/
-
+                        dist_dir=\$(ls testapp.client/dist | head -n1)
+                        sudo cp -r testapp.client/dist/\$dist_dir/* ${env.DEPLOY_PATH}/ui/
                         sudo chown -R www-data:www-data ${env.DEPLOY_PATH}/ui
                         sudo chmod -R 755 ${env.DEPLOY_PATH}/ui
                     fi
@@ -162,8 +168,7 @@ EOF
 
         stage('Create Systemd Service') {
             steps {
-                script {
-                    def serviceContent = """[Unit]
+                writeFile file: 'service.tmp', text: """[Unit]
 Description=${env.SERVICE_NAME}
 After=network.target
 
@@ -179,21 +184,17 @@ Environment=ASPNETCORE_ENVIRONMENT=Production
 WantedBy=multi-user.target
 """
 
-                    writeFile file: 'systemd.service', text: serviceContent
-
-                    sh """
-                        sudo cp systemd.service /etc/systemd/system/${env.SERVICE_NAME}.service
-                        sudo systemctl daemon-reload
-                        sudo systemctl enable ${env.SERVICE_NAME}
-                    """
-                }
+                sh """
+                    sudo cp service.tmp /etc/systemd/system/${env.SERVICE_NAME}.service
+                    sudo systemctl daemon-reload
+                    sudo systemctl enable ${env.SERVICE_NAME}
+                """
             }
         }
 
         stage('Configure Nginx') {
             steps {
-                script {
-                    def nginxConfig = """server {
+                writeFile file: 'nginx.tmp', text: """server {
     listen 80;
     server_name ${env.DEPLOY_DOMAIN};
 
@@ -201,35 +202,28 @@ WantedBy=multi-user.target
     index index.html;
 
     location / {
-        try_files \\$uri \\$uri/ /index.html;
+        try_files \$uri \$uri/ /index.html;
     }
 
     location ^~ /api/ {
         proxy_pass http://127.0.0.1:${env.SERVICE_PORT};
         proxy_http_version 1.1;
-        proxy_set_header Host \\$host;
-        proxy_set_header X-Real-IP \\$remote_addr;
-        proxy_set_header X-Forwarded-For \\$proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto \\$scheme;
-        proxy_set_header Upgrade \\$http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_read_timeout 300s;
-        proxy_send_timeout 300s;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
     }
 
     client_max_body_size 50M;
 }
 """
 
-                    writeFile file: "nginx-site.conf", text: nginxConfig
-
-                    sh """
-                        sudo cp nginx-site.conf /etc/nginx/sites-available/${env.SERVICE_NAME}
-                        sudo ln -sf /etc/nginx/sites-available/${env.SERVICE_NAME} /etc/nginx/sites-enabled/${env.SERVICE_NAME}
-                        sudo nginx -t
-                        sudo systemctl reload nginx
-                    """
-                }
+                sh """
+                    sudo cp nginx.tmp /etc/nginx/sites-available/${env.SERVICE_NAME}
+                    sudo ln -sf /etc/nginx/sites-available/${env.SERVICE_NAME} /etc/nginx/sites-enabled/${env.SERVICE_NAME}
+                    sudo nginx -t
+                    sudo systemctl reload nginx
+                """
             }
         }
 
@@ -237,7 +231,7 @@ WantedBy=multi-user.target
             steps {
                 sh """
                     sudo systemctl start ${env.SERVICE_NAME}
-                    sleep 5
+                    sleep 4
                 """
             }
         }
@@ -245,7 +239,8 @@ WantedBy=multi-user.target
         stage('Health Check') {
             steps {
                 sh """
-                    curl -f http://127.0.0.1:${env.SERVICE_PORT}/api || echo "API booting..."
+                    echo "Checking service on ${env.SERVICE_PORT}"
+                    curl -f http://127.0.0.1:${env.SERVICE_PORT}/ || echo "Service warming up..."
                 """
             }
         }
@@ -253,11 +248,10 @@ WantedBy=multi-user.target
 
     post {
         success {
-            echo "🎉 DEPLOYMENT SUCCESSFUL: http://${env.DEPLOY_DOMAIN}"
-            cleanWs()
+            echo "SUCCESS: http://${env.DEPLOY_DOMAIN}"
         }
         failure {
-            echo "❌ Deployment Failed"
+            echo "FAILED: Check Jenkins console logs"
         }
     }
 }
