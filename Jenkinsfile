@@ -54,14 +54,6 @@ pipeline {
                         env.SERVICE_PORT  = "${5100 + Math.abs(safe.hashCode()) % 100}"
                         env.DB_NAME       = "gusto_${safe}"
                     }
-
-                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-                    echo "  Branch:       ${branch}"
-                    echo "  Domain:       ${env.DEPLOY_DOMAIN}"
-                    echo "  Service:      ${env.SERVICE_NAME} on ${env.SERVICE_PORT}"
-                    echo "  Deploy Path:  ${env.DEPLOY_PATH}"
-                    echo "  Database:     ${env.DB_NAME}"
-                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
                 }
             }
         }
@@ -85,124 +77,91 @@ pipeline {
             }
         }
 
-        stage('Build Backend (.NET)') {
-            steps {
-                withCredentials([
-                    string(credentialsId: 'DB_SERVER', variable: 'DB_SERVER'),
-                    string(credentialsId: 'DB_USER',   variable: 'DB_USER'),
-                    string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD')
-                ]) {
-                    script {
-                        sh """
-                            set -e
-                            dotnet restore testapp.sln
-                            dotnet publish testapp.Server -c Release -o publish_temp -maxcpucount:1 /p:UseSharedCompilation=false
-                        """
-
-                        // ✅ Generate appsettings.Production.json with proper variable substitution
-                        def connString = "Server=${env.DB_SERVER};Database=${env.DB_NAME};User Id=${env.DB_USER};Password=${env.DB_PASSWORD};Encrypt=True;TrustServerCertificate=True;"
-                        
-                        writeFile file: 'publish_temp/appsettings.Production.json', text: """{
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  "AllowedHosts": "*",
-  "Urls": "http://localhost:${env.SERVICE_PORT}",
-  "ConnectionStrings": {
-    "DefaultConnection": "${connString}"
-  }
-}"""
+        stage('Build Application') {
+            parallel {
+                stage('Build Backend (.NET)') {
+                    steps {
+                        script {
+                            sh """
+                                set -e
+                                dotnet restore testapp.sln
+                                dotnet publish testapp.Server -c Release -o publish_temp -maxcpucount:1 /p:UseSharedCompilation=false
+                            """
+                        }
+                    }
+                }
+                stage('Build Angular UI') {
+                    steps {
+                        script {
+                            sh """
+                                set -e
+                                if [ -d "testapp.client" ]; then
+                                    cd testapp.client
+                                    npm ci || npm install
+                                    mkdir -p src/environments
+                                    # Optionally sync environment.prod.ts
+                                    npm run build -- --configuration production
+                                    cd -
+                                else
+                                    echo ">>> No Angular project found, skipping"
+                                fi
+                            """
+                        }
                     }
                 }
             }
         }
 
-        stage('Deploy Backend') {
-            steps {
-                script {
-                    sh """
-                        set -e
-                        sudo mkdir -p ${env.DEPLOY_PATH}/api
-                        sudo rm -rf ${env.DEPLOY_PATH}/api/*
-                        sudo cp -r publish_temp/* ${env.DEPLOY_PATH}/api/
-                        
-                        # ✅ Remove Angular files from backend (they should be in /ui/)
-                        sudo rm -rf ${env.DEPLOY_PATH}/api/wwwroot/*
-                        
-                        sudo chown -R www-data:www-data ${env.DEPLOY_PATH}/api
-                    """
+        stage('Deploy Application') {
+            parallel {
+                stage('Deploy Backend') {
+                    steps {
+                        script {
+                            sh """
+                                set -e
+                                sudo mkdir -p ${env.DEPLOY_PATH}/api
+                                sudo rm -rf ${env.DEPLOY_PATH}/api/*
+                                sudo cp -r publish_temp/* ${env.DEPLOY_PATH}/api/
+                                # Leave appsettings.Production.json as published (from repo)
+                                sudo chown -R www-data:www-data ${env.DEPLOY_PATH}/api
+                            """
+                        }
+                    }
+                }
+                stage('Deploy Angular UI') {
+                    steps {
+                        script {
+                            sh """
+                                set -e
+                                if [ -d "testapp.client" ] && [ -d "testapp.client/dist" ]; then
+                                    sudo mkdir -p ${env.DEPLOY_PATH}/ui
+                                    sudo rm -rf ${env.DEPLOY_PATH}/ui/*
+                                    if [ -d testapp.client/dist/testapp.client/browser ]; then
+                                        sudo cp -r testapp.client/dist/testapp.client/browser/* ${env.DEPLOY_PATH}/ui/
+                                    elif [ -d testapp.client/dist/testapp.client ]; then
+                                        sudo cp -r testapp.client/dist/testapp.client/* ${env.DEPLOY_PATH}/ui/
+                                    else
+                                        first_dist=\$(ls -1 testapp.client/dist | head -n1)
+                                        sudo cp -r testapp.client/dist/\${first_dist}/* ${env.DEPLOY_PATH}/ui/
+                                    fi
+                                    sudo chown -R www-data:www-data ${env.DEPLOY_PATH}/ui
+                                    sudo chmod -R 755 ${env.DEPLOY_PATH}/ui
+                                else
+                                    echo ">>> No built UI to deploy"
+                                fi
+                            """
+                        }
+                    }
                 }
             }
         }
 
-        stage('Build Angular UI') {
-            steps {
-                script {
-                    sh """
-                        set -e
-                        if [ -d "testapp.client" ]; then
-                            echo ">>> Found Angular project, building..."
-                            cd testapp.client
-
-                            npm ci || npm install
-
-                            mkdir -p src/environments
-                            
-                            # ✅ Generate environment.prod.ts with correct domain
-                            cat > src/environments/environment.prod.ts <<'ENV'
-export const environment = {
-  production: true,
-  apiUrl: "https://${env.DEPLOY_DOMAIN}/api"
-};
-ENV
-
-                            npm run build -- --configuration production
-                            cd -
-                        else
-                            echo ">>> No Angular project found, skipping"
-                        fi
-                    """
-                }
-            }
-        }
-
-        stage('Deploy Angular UI') {
-            steps {
-                script {
-                    sh """
-                        set -e
-                        if [ -d "testapp.client" ] && [ -d "testapp.client/dist" ]; then
-                            sudo mkdir -p ${env.DEPLOY_PATH}/ui
-                            sudo rm -rf ${env.DEPLOY_PATH}/ui/*
-                            
-                            # ✅ Smart detection of Angular dist folder
-                            if [ -d testapp.client/dist/testapp.client/browser ]; then
-                                sudo cp -r testapp.client/dist/testapp.client/browser/* ${env.DEPLOY_PATH}/ui/
-                            elif [ -d testapp.client/dist/testapp.client ]; then
-                                sudo cp -r testapp.client/dist/testapp.client/* ${env.DEPLOY_PATH}/ui/
-                            else
-                                first_dist=\$(ls -1 testapp.client/dist | head -n1)
-                                sudo cp -r testapp.client/dist/\${first_dist}/* ${env.DEPLOY_PATH}/ui/
-                            fi
-                            
-                            sudo chown -R www-data:www-data ${env.DEPLOY_PATH}/ui
-                            sudo chmod -R 755 ${env.DEPLOY_PATH}/ui
-                        else
-                            echo ">>> No built UI to deploy"
-                        fi
-                    """
-                }
-            }
-        }
-
-        stage('Create Systemd Service') {
-            steps {
-                script {
-                    // ✅ Generate systemd service with proper variable substitution
-                    def serviceContent = """[Unit]
+        stage('Configure Services') {
+            parallel {
+                stage('Create Systemd Service') {
+                    steps {
+                        script {
+                            def serviceContent = """[Unit]
 Description=Branch Deployment: ${env.SERVICE_NAME}
 After=network.target
 
@@ -213,50 +172,46 @@ Restart=always
 RestartSec=10
 User=www-data
 Environment=ASPNETCORE_ENVIRONMENT=Production
+# If you want to use Jenkins credentials for DB, uncomment and use the next line instead:
+# Environment=ConnectionStrings__DefaultConnection=Server=${env.DB_SERVER};Database=${env.DB_NAME};User Id=${env.DB_USER};Password=${env.DB_PASSWORD};Encrypt=True;TrustServerCertificate=True;
 
 [Install]
 WantedBy=multi-user.target
 """
-                    
-                    writeFile file: 'systemd.service', text: serviceContent
-                    
-                    sh """
-                        sudo cp systemd.service /etc/systemd/system/${env.SERVICE_NAME}.service
-                        sudo systemctl daemon-reload
-                        sudo systemctl enable ${env.SERVICE_NAME}
-                    """
+                            writeFile file: 'systemd.service', text: serviceContent
+                            sh """
+                                sudo cp systemd.service /etc/systemd/system/${env.SERVICE_NAME}.service
+                                sudo systemctl daemon-reload
+                                sudo systemctl enable ${env.SERVICE_NAME}
+                            """
+                        }
+                    }
                 }
-            }
-        }
-
-        stage('Configure Nginx') {
-            steps {
-                script {
-                    // ✅ Generate Nginx config with proper variable substitution
-                    def nginxConfig = """server {
+                stage('Configure Nginx') {
+                    steps {
+                        script {
+                            def nginxConfig = '''server {
     listen 80;
-    server_name ${env.DEPLOY_DOMAIN};
+    server_name ''' + env.DEPLOY_DOMAIN + ''';
 
-    root ${env.DEPLOY_PATH}/ui;
+    root ''' + env.DEPLOY_PATH + '''/ui;
     index index.html;
 
-    # Angular SPA routing
     location / {
-        try_files \\\$uri \\\$uri/ /index.html;
+        try_files $uri $uri/ /index.html;
         add_header Cache-Control "no-cache, no-store, must-revalidate";
         add_header Pragma "no-cache";
         add_header Expires "0";
     }
 
-    # API proxy - using regex match for better compatibility
     location ~ ^/api/ {
-        proxy_pass http://127.0.0.1:${env.SERVICE_PORT};
+        proxy_pass http://127.0.0.1:''' + env.SERVICE_PORT + ''';
         proxy_http_version 1.1;
-        proxy_set_header Host \\\$host;
-        proxy_set_header X-Real-IP \\\$remote_addr;
-        proxy_set_header X-Forwarded-For \\\$proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto \\\$scheme;
-        proxy_set_header Upgrade \\\$http_upgrade;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
         proxy_read_timeout 300s;
         proxy_send_timeout 300s;
@@ -267,18 +222,17 @@ WantedBy=multi-user.target
     add_header X-Frame-Options "SAMEORIGIN" always;
     add_header X-Content-Type-Options "nosniff" always;
     add_header X-XSS-Protection "1; mode=block" always;
-}
-"""
-                    
-                    writeFile file: 'nginx-site.conf', text: nginxConfig
-                    
-                    sh """
-                        sudo cp nginx-site.conf /etc/nginx/sites-available/${env.SERVICE_NAME}
-                        sudo rm -f /etc/nginx/sites-enabled/${env.SERVICE_NAME}
-                        sudo ln -sf /etc/nginx/sites-available/${env.SERVICE_NAME} /etc/nginx/sites-enabled/${env.SERVICE_NAME}
-                        sudo nginx -t
-                        sudo systemctl reload nginx
-                    """
+}'''
+                            writeFile file: 'nginx-site.conf', text: nginxConfig
+                            sh """
+                                sudo cp nginx-site.conf /etc/nginx/sites-available/${env.SERVICE_NAME}
+                                sudo rm -f /etc/nginx/sites-enabled/${env.SERVICE_NAME}
+                                sudo ln -sf /etc/nginx/sites-available/${env.SERVICE_NAME} /etc/nginx/sites-enabled/${env.SERVICE_NAME}
+                                sudo nginx -t
+                                sudo systemctl reload nginx
+                            """
+                        }
+                    }
                 }
             }
         }
@@ -300,16 +254,15 @@ WantedBy=multi-user.target
             steps {
                 script {
                     sh """
-                        echo ">>> Testing service on port ${env.SERVICE_PORT}..."
                         for i in {1..10}; do
-                            if curl -f http://127.0.0.1:${env.SERVICE_PORT}/api -o /dev/null -s 2>/dev/null; then
+                            if curl -f http://127.0.0.1:${env.SERVICE_PORT}/ -o /dev/null -s 2>/dev/null; then
                                 echo "✅ Service is healthy!"
                                 exit 0
                             fi
                             echo "Attempt \$i failed, retrying..."
                             sleep 2
                         done
-                        echo "⚠️  Health check inconclusive (this may be normal if no /api endpoint exists)"
+                        echo "⚠️  Health check inconclusive"
                     """
                 }
             }
