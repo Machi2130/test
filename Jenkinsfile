@@ -31,26 +31,26 @@ pipeline {
                         env.DEPLOY_PATH   = "/var/www/testapp"
                         env.SERVICE_NAME  = "testapp"
                         env.SERVICE_PORT  = "5000"
-                        env.DB_NAME       = "gusto_prod"
+                        env.DB_NAME       = "gusto"
                     } else if (isDev) {
                         env.DEPLOY_DOMAIN = DEV_DOMAIN
                         env.DEPLOY_PATH   = "/var/www/testapp-dev"
                         env.SERVICE_NAME  = "testapp-dev"
                         env.SERVICE_PORT  = "5001"
-                        env.DB_NAME       = "gusto_dev"
+                        env.DB_NAME       = "gusto"
                     } else if (isPratha) {
                         env.DEPLOY_DOMAIN = PRATHA_DOMAIN
                         env.DEPLOY_PATH   = "/var/www/testapp-prathamesh"
                         env.SERVICE_NAME  = "testapp-prathamesh"
                         env.SERVICE_PORT  = "5002"
-                        env.DB_NAME       = "gusto_prathamesh"
+                        env.DB_NAME       = "gusto"
                     } else {
                         def safe = branch.toLowerCase().replaceAll(/[^a-z0-9]/, "-")
                         env.DEPLOY_DOMAIN = DEV_DOMAIN
                         env.DEPLOY_PATH   = "/var/www/testapp-${safe}"
                         env.SERVICE_NAME  = "testapp-${safe}"
                         env.SERVICE_PORT  = "${5100 + Math.abs(safe.hashCode()) % 100}"
-                        env.DB_NAME       = "gusto_${safe}"
+                        env.DB_NAME       = "gusto"
                     }
 
                     echo "Branch: ${branch}"
@@ -89,13 +89,17 @@ pipeline {
                     """
 
                     script {
-                        def connString = "Server=${DB_SERVER};Database=${env.DB_NAME};User Id=${DB_USER};Password=${DB_PASSWORD};Encrypt=True;TrustServerCertificate=True;"
+                        def defaultConn = "Server=${DB_SERVER};Database=${env.DB_NAME};User Id=${DB_USER};Password=${DB_PASSWORD};Encrypt=True;TrustServerCertificate=True;"
+                        def reportConn = "Server=${DB_SERVER};Database=reportDB;User Id=${DB_USER};Password=${DB_PASSWORD};Encrypt=True;TrustServerCertificate=True;"
 
                         writeFile file: 'publish_temp/appsettings.Production.json', text: """{
   "Logging": { "LogLevel": { "Default": "Information", "Microsoft.AspNetCore": "Warning" }},
   "AllowedHosts": "*",
   "Urls": "http://localhost:${env.SERVICE_PORT}",
-  "ConnectionStrings": { "DefaultConnection": "${connString}" }
+  "ConnectionStrings": {
+    "DefaultConnection": "${defaultConn}",
+    "ReportConnection": "${reportConn}"
+  }
 }"""
                     }
                 }
