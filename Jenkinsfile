@@ -25,42 +25,38 @@ pipeline {
             steps {
                 script {
                     def branch = env.BRANCH_NAME ?: 'unknown'
-                    def isMain   = (branch == "main")
-                    def isDev    = (branch == "dev")
+                    def isMain = (branch == "main")
+                    def isDev = (branch == "dev")
                     def isPratha = branch.toLowerCase().startsWith("prathamesh")
 
                     if (isMain) {
                         env.DEPLOY_DOMAIN = MAIN_DOMAIN
-                        env.DEPLOY_PATH   = "/var/www/testapp"
-                        env.SERVICE_NAME  = "testapp"
-                        env.SERVICE_PORT  = "5000"
-                        env.DB_NAME       = "gusto_prod"
-                        env.REPORT_DB_NAME = "reportDB_prod"
+                        env.DEPLOY_PATH = "/var/www/testapp"
+                        env.SERVICE_NAME = "testapp"
+                        env.SERVICE_PORT = "5000"
+                        env.DB_NAME = "gusto_prod"
 
                     } else if (isDev) {
                         env.DEPLOY_DOMAIN = DEV_DOMAIN
-                        env.DEPLOY_PATH   = "/var/www/testapp-dev"
-                        env.SERVICE_NAME  = "testapp-dev"
-                        env.SERVICE_PORT  = "5001"
-                        env.DB_NAME       = "gusto_dev"
-                        env.REPORT_DB_NAME = "reportDB_dev"
+                        env.DEPLOY_PATH = "/var/www/testapp-dev"
+                        env.SERVICE_NAME = "testapp-dev"
+                        env.SERVICE_PORT = "5001"
+                        env.DB_NAME = "gusto_dev"
 
                     } else if (isPratha) {
                         env.DEPLOY_DOMAIN = PRATHA_DOMAIN
-                        env.DEPLOY_PATH   = "/var/www/testapp-prathamesh"
-                        env.SERVICE_NAME  = "testapp-prathamesh"
-                        env.SERVICE_PORT  = "5002"
-                        env.DB_NAME       = "gusto_prathamesh"
-                        env.REPORT_DB_NAME = "reportDB_prathamesh"
+                        env.DEPLOY_PATH = "/var/www/testapp-prathamesh"
+                        env.SERVICE_NAME = "testapp-prathamesh"
+                        env.SERVICE_PORT = "5002"
+                        env.DB_NAME = "gusto_prathamesh"
 
                     } else {
                         def safe = branch.toLowerCase().replaceAll(/[^a-z0-9]/, "-")
                         env.DEPLOY_DOMAIN = DEV_DOMAIN
-                        env.DEPLOY_PATH   = "/var/www/testapp-${safe}"
-                        env.SERVICE_NAME  = "testapp-${safe}"
-                        env.SERVICE_PORT  = "${5100 + Math.abs(safe.hashCode()) % 100}"
-                        env.DB_NAME       = "gusto_${safe}"
-                        env.REPORT_DB_NAME = "reportDB_${safe}"
+                        env.DEPLOY_PATH = "/var/www/testapp-${safe}"
+                        env.SERVICE_NAME = "testapp-${safe}"
+                        env.SERVICE_PORT = "${5100 + Math.abs(safe.hashCode()) % 100}"
+                        env.DB_NAME = "gusto_${safe}"
                     }
 
                     echo """
@@ -70,7 +66,6 @@ DOMAIN      : ${env.DEPLOY_DOMAIN}
 SERVICE     : ${env.SERVICE_NAME}
 PORT        : ${env.SERVICE_PORT}
 DB          : ${env.DB_NAME}
-REPORT DB   : ${env.REPORT_DB_NAME}
 ────────────────────────────────────────────
 """
                 }
@@ -85,23 +80,24 @@ REPORT DB   : ${env.REPORT_DB_NAME}
         }
 
         /* ───────────────────────────────────────────────────────────────
-           STOP OLD SERVICE
+           CLEAN WORKSPACE (fixes TAR/Angular errors)
         ────────────────────────────────────────────────────────────────*/
-        stage('Stop Old Service') {
+        stage('Clean Old Files') {
             steps {
                 sh """
-                    sudo systemctl stop ${env.SERVICE_NAME} || true
-                    sudo pkill -9 -f ${env.SERVICE_NAME}.dll || true
-                    sleep 2
+                    rm -rf testapp.client/node_modules
+                    rm -rf testapp.client/package-lock.json
+                    rm -rf publish_temp
                 """
             }
         }
 
         /* ───────────────────────────────────────────────────────────────
-           BUILD APPLICATION
+           BUILD BACKEND + FRONTEND
         ────────────────────────────────────────────────────────────────*/
         stage('Build Application') {
             parallel {
+
                 /* ------- Backend -------- */
                 stage('Build Backend (.NET)') {
                     steps {
@@ -118,10 +114,12 @@ REPORT DB   : ${env.REPORT_DB_NAME}
                         sh """
                             if [ -d "testapp.client" ]; then
                                 cd testapp.client
-                                
-                                npm ci || npm install
 
-                                # Use npx → no global ng needed
+                                # Full clean and reinstall (fixes TAR_ENTRY_ERROR)
+                                rm -rf node_modules package-lock.json
+                                npm install
+
+                                # No global ng needed
                                 npx --yes @angular/cli@latest build --configuration production
 
                                 cd -
@@ -138,7 +136,7 @@ REPORT DB   : ${env.REPORT_DB_NAME}
         stage('Deploy Application') {
             parallel {
 
-                /* ------- Backend -------- */
+                /* ------- API -------- */
                 stage('Deploy Backend') {
                     steps {
                         sh """
@@ -159,13 +157,9 @@ REPORT DB   : ${env.REPORT_DB_NAME}
                                 sudo rm -rf ${env.DEPLOY_PATH}/ui/*
 
                                 # Smart dist detection
-                                if [ -d testapp.client/dist/testapp.client/browser ]; then
-                                    sudo cp -r testapp.client/dist/testapp.client/browser/* ${env.DEPLOY_PATH}/ui/
-                                elif [ -d testapp.client/dist/testapp.client ]; then
-                                    sudo cp -r testapp.client/dist/testapp.client/* ${env.DEPLOY_PATH}/ui/
-                                else
-                                    sudo cp -r testapp.client/dist/*/* ${env.DEPLOY_PATH}/ui/
-                                fi
+                                DIST_PATH=$(find testapp.client/dist -type d -maxdepth 2 | grep browser | head -1)
+
+                                sudo cp -r $DIST_PATH/* ${env.DEPLOY_PATH}/ui/
 
                                 sudo chown -R www-data:www-data ${env.DEPLOY_PATH}/ui
                                 sudo chmod -R 755 ${env.DEPLOY_PATH}/ui
@@ -186,8 +180,7 @@ REPORT DB   : ${env.REPORT_DB_NAME}
                 stage('Setup Systemd') {
                     steps {
                         script {
-
-                            writeFile file: 'service.tmp', text: """[Unit]
+                            writeFile file: "service.tmp", text: """[Unit]
 Description=${env.SERVICE_NAME}
 After=network.target
 
@@ -216,7 +209,6 @@ WantedBy=multi-user.target
                 stage('Setup Nginx') {
                     steps {
                         script {
-
                             writeFile file: "nginx.tmp", text: """
 server {
     listen 80;
@@ -270,7 +262,7 @@ server {
             steps {
                 sh """
                     sudo systemctl status ${env.SERVICE_NAME} --no-pager || true
-                    curl -f http://127.0.0.1:${env.SERVICE_PORT}/api || echo 'API may still be starting...'
+                    curl -f http://127.0.0.1:${env.SERVICE_PORT}/api || echo 'API starting...'
                 """
             }
         }
@@ -283,6 +275,7 @@ server {
         }
         failure {
             echo "❌ Deployment failed"
+            cleanWs()      // Ensures future builds don’t break
         }
     }
 }
