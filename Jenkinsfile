@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'node18'   // Angular 19 supports Node 18
+        nodejs 'node18'
     }
 
     environment {
@@ -32,21 +32,18 @@ pipeline {
                         env.SERVICE_NAME  = "testapp"
                         env.SERVICE_PORT  = "5000"
                         env.DB_NAME       = "gusto_prod"
-
                     } else if (isDev) {
                         env.DEPLOY_DOMAIN = DEV_DOMAIN
                         env.DEPLOY_PATH   = "/var/www/testapp-dev"
                         env.SERVICE_NAME  = "testapp-dev"
                         env.SERVICE_PORT  = "5001"
                         env.DB_NAME       = "gusto_dev"
-
                     } else if (isPratha) {
                         env.DEPLOY_DOMAIN = PRATHA_DOMAIN
                         env.DEPLOY_PATH   = "/var/www/testapp-prathamesh"
                         env.SERVICE_NAME  = "testapp-prathamesh"
                         env.SERVICE_PORT  = "5002"
                         env.DB_NAME       = "gusto_prathamesh"
-
                     } else {
                         def safe = branch.toLowerCase().replaceAll(/[^a-z0-9]/, "-")
                         env.DEPLOY_DOMAIN = DEV_DOMAIN
@@ -83,23 +80,24 @@ pipeline {
             steps {
                 withCredentials([
                     string(credentialsId: 'DB_SERVER', variable: 'DB_SERVER'),
-                    string(credentialsId: 'DB_USER',   variable: 'DB_USER'),
+                    string(credentialsId: 'DB_USER', variable: 'DB_USER'),
                     string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD')
                 ]) {
-
                     sh """
                         dotnet restore testapp.sln
                         dotnet publish testapp.Server -c Release -o publish_temp
                     """
 
-                    def connString = "Server=${env.DB_SERVER};Database=${env.DB_NAME};User Id=${env.DB_USER};Password=${env.DB_PASSWORD};Encrypt=True;TrustServerCertificate=True;"
+                    script {
+                        def connString = "Server=${DB_SERVER};Database=${env.DB_NAME};User Id=${DB_USER};Password=${DB_PASSWORD};Encrypt=True;TrustServerCertificate=True;"
 
-                    writeFile file: 'publish_temp/appsettings.Production.json', text: """{
+                        writeFile file: 'publish_temp/appsettings.Production.json', text: """{
   "Logging": { "LogLevel": { "Default": "Information", "Microsoft.AspNetCore": "Warning" }},
   "AllowedHosts": "*",
   "Urls": "http://localhost:${env.SERVICE_PORT}",
   "ConnectionStrings": { "DefaultConnection": "${connString}" }
 }"""
+                    }
                 }
             }
         }
@@ -168,7 +166,8 @@ EOF
 
         stage('Create Systemd Service') {
             steps {
-                writeFile file: 'service.tmp', text: """[Unit]
+                script {
+                    def serviceContent = """[Unit]
 Description=${env.SERVICE_NAME}
 After=network.target
 
@@ -183,6 +182,8 @@ Environment=ASPNETCORE_ENVIRONMENT=Production
 [Install]
 WantedBy=multi-user.target
 """
+                    writeFile file: 'service.tmp', text: serviceContent
+                }
 
                 sh """
                     sudo cp service.tmp /etc/systemd/system/${env.SERVICE_NAME}.service
@@ -194,7 +195,8 @@ WantedBy=multi-user.target
 
         stage('Configure Nginx') {
             steps {
-                writeFile file: 'nginx.tmp', text: """server {
+                script {
+                    def nginxContent = """server {
     listen 80;
     server_name ${env.DEPLOY_DOMAIN};
 
@@ -217,6 +219,8 @@ WantedBy=multi-user.target
     client_max_body_size 50M;
 }
 """
+                    writeFile file: 'nginx.tmp', text: nginxContent
+                }
 
                 sh """
                     sudo cp nginx.tmp /etc/nginx/sites-available/${env.SERVICE_NAME}
