@@ -163,8 +163,16 @@ EOF
                     if [ -d "testapp.client/dist" ]; then
                         sudo mkdir -p ${env.DEPLOY_PATH}/ui
                         sudo rm -rf ${env.DEPLOY_PATH}/ui/*
+                        
                         dist_dir=\$(ls testapp.client/dist | head -n1)
-                        sudo cp -r testapp.client/dist/\$dist_dir/* ${env.DEPLOY_PATH}/ui/
+                        
+                        # Angular 19 outputs to browser subfolder
+                        if [ -d "testapp.client/dist/\$dist_dir/browser" ]; then
+                            sudo cp -r testapp.client/dist/\$dist_dir/browser/* ${env.DEPLOY_PATH}/ui/
+                        else
+                            sudo cp -r testapp.client/dist/\$dist_dir/* ${env.DEPLOY_PATH}/ui/
+                        fi
+                        
                         sudo chown -R www-data:www-data ${env.DEPLOY_PATH}/ui
                         sudo chmod -R 755 ${env.DEPLOY_PATH}/ui
                     fi
