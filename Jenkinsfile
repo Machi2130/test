@@ -112,6 +112,10 @@ pipeline {
                     sudo mkdir -p ${env.DEPLOY_PATH}/api
                     sudo rm -rf ${env.DEPLOY_PATH}/api/*
                     sudo cp -r publish_temp/* ${env.DEPLOY_PATH}/api/
+                    
+                    # Clear wwwroot to prevent SPA from hijacking API routes
+                    sudo rm -rf ${env.DEPLOY_PATH}/api/wwwroot/*
+                    
                     sudo chown -R www-data:www-data ${env.DEPLOY_PATH}/api
                 """
             }
