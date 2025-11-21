@@ -126,6 +126,9 @@ pipeline {
                         rm -rf node_modules package-lock.json
                         npm install
 
+                        # FIX: Ensure environments folder ALWAYS exists
+                        mkdir -p src/environments
+
                         cat > src/environments/environment.prod.ts <<EOF
 export const environment = {
   production: true,
@@ -250,7 +253,7 @@ WantedBy=multi-user.target
 
     post {
         success {
-            echo "🎉 DEPLOYMENT SUCCESSFUL — http://${env.DEPLOY_DOMAIN}"
+            echo "🎉 DEPLOYMENT SUCCESSFUL: http://${env.DEPLOY_DOMAIN}"
             cleanWs()
         }
         failure {
