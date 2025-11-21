@@ -7,12 +7,11 @@ import { Report, ReportFilter } from '../Models/report';
   providedIn: 'root'
 })
 export class ReportService {
-  private readonly baseUrl = '/filter';
+  private readonly baseUrl = '/api/MainReport';  // ← Fixed
 
   constructor(private http: HttpClient) { }
 
-
   filterReports(filter: ReportFilter): Observable<Report[]> {
-    return this.http.post<Report[]>(this.baseUrl, filter);
+    return this.http.post<Report[]>(`${this.baseUrl}/filter`, filter);  // ← Fixed
   }
 }
